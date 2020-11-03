@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand">PWRLifts</a>
+    <button class="navbar-toggler" type="button" aria-label="Toggle navigation"
+        (click)="collapsed = !collapsed"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse justify-content-between" [class.collapse]="collapsed">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" i18n>Dashboard</a>
+            <div class="dropdown">
+                <a class="nav-item nav-link dropdown-toggle" appDropdown #bodyDropdown="appDropdown" role="button">Body</a>
+                <div class="dropdown-menu" [class.show]="bodyDropdown.isOpen">
+                    <a class="dropdown-item" i18n>Weight</a>
+                    <a class="dropdown-item" i18n>Bodyfat</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a class="nav-item nav-link dropdown-toggle" appDropdown #rmDropdown="appDropdown" role="button">1RM</a>
+                <div class="dropdown-menu" [class.show]="rmDropdown.isOpen">
+                    <a class="dropdown-item" i18n>Squat</a>
+                    <a class="dropdown-item" i18n>Bench Press</a>
+                    <a class="dropdown-item" i18n>Deadlift</a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-nav navbar-right">
+            <a class="nav-item nav-link" i18n>Login</a>
+        </div>
+    </div>
+</nav>
