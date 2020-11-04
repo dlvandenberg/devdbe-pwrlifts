@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm.form)">
+            <div class="form-group">
+                <label for="email" i18n>Email address</label>
+                <input type="email" 
+                    class="form-control"
+                    id="email"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter email"
+                    ngModel
+                    name="email"
+                    required
+                    email
+                    #emailControl="ngModel"
+                    [class.is-invalid]="emailControl.dirty && !emailControl.valid"
+                >
+                <div class="invalid-feedback" *ngIf="emailControl.dirty && !emailControl.valid">
+                    Please enter a valid email address
+                </div>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="password" i18n>Password</label>
+                <input type="password" 
+                    class="form-control"
+                    id="password"
+                    placeholder="Enter password"
+                    autocomplete="on"
+                    ngModel
+                    name="password"
+                    required
+                    minlength="6"
+                    #passwordControl="ngModel"
+                    [class.is-invalid]="passwordControl.dirty && !passwordControl.valid"
+                >
+                <div class="invalid-feedback" *ngIf="passwordControl.dirty && !passwordControl.valid" i18n>
+                    Please enter a valid password (min. 6 characters)
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid" i18n>Submit</button>
+            </div>
+            <br/>
+            <div>
+                <span i18n>Don't have an account yet? </span> <a href="#" class="text-primary" [routerLink]="['../sign-up']">Sign up</a>
+            </div>
+        </form>
+    </div>
+</div>
