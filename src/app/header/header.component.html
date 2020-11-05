@@ -8,15 +8,15 @@
 
     <div class="navbar-collapse justify-content-between" [class.collapse]="collapsed">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" i18n>Dashboard</a>
-            <div class="dropdown">
+            <a class="nav-item nav-link" *ngIf="isAuthenticated" i18n>Dashboard</a>
+            <div class="dropdown" *ngIf="isAuthenticated">
                 <a class="nav-item nav-link dropdown-toggle" appDropdown #bodyDropdown="appDropdown" role="button">Body</a>
                 <div class="dropdown-menu" [class.show]="bodyDropdown.isOpen">
                     <a class="dropdown-item" i18n>Weight</a>
                     <a class="dropdown-item" i18n>Bodyfat</a>
                 </div>
             </div>
-            <div class="dropdown">
+            <div class="dropdown" *ngIf="isAuthenticated">
                 <a class="nav-item nav-link dropdown-toggle" appDropdown #rmDropdown="appDropdown" role="button">1RM</a>
                 <div class="dropdown-menu" [class.show]="rmDropdown.isOpen">
                     <a class="dropdown-item" i18n>Squat</a>
@@ -27,8 +27,12 @@
         </div>
         <div class="navbar-nav navbar-right">
             <a class="nav-item nav-link"
+                *ngIf="!isAuthenticated"
                 routerLinkActive="active"
                 routerLink="auth" i18n>Login</a>
+            <a class="nav-item nav-link" 
+                *ngIf="isAuthenticated"
+                (click)="onLogout()" i18n>Logout</a>
         </div>
     </div>
 </nav>

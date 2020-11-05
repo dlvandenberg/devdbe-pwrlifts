@@ -1,19 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import * as moment from 'moment';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(public authService: AuthService) { }
 
   public onSubmit(form: NgForm): void {
-    console.log(form.value);
+    const values = form.value;
+
+    this.authService.signUp({
+      firstName: values.firstName,
+      lastName: values.lastName,
+      gender: values.gender,
+      dateOfBirth: moment(values.dateOfBirth, 'yyyy-mm-dd').toDate(),
+      email: values.email,
+      password: values.password
+    });
   }
 }

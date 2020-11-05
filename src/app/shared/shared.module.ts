@@ -4,12 +4,16 @@ import { DateValidatorDirective } from './date-validator.directive';
 import { DropdownDirective } from './dropdown.directive';
 import { FormsModule } from '@angular/forms';
 import { PasswordValidatorDirective } from './password-validator.directive';
+import { ErrorComponent } from './error/error.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     DateValidatorDirective,
     DropdownDirective,
-    PasswordValidatorDirective
+    PasswordValidatorDirective,
+    ErrorComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +23,9 @@ import { PasswordValidatorDirective } from './password-validator.directive';
     DateValidatorDirective,
     PasswordValidatorDirective,
     DropdownDirective,
-    FormsModule
+    FormsModule,
+    ErrorComponent,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule { }
