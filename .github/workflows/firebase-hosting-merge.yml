@@ -23,7 +23,7 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEVDBE_PWRLIFTS }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEVDBE_PWRLIFTS_DEV }}'
           channelId: live
           projectId: devdbe-pwrlifts-dev
         env:
