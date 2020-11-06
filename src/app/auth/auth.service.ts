@@ -41,6 +41,8 @@ export class AuthService {
   private errorMessageSubject = new BehaviorSubject<string>(null);
   public errorMessage$ = this.errorMessageSubject.asObservable();
 
+  private tokenExpirationTimer;
+
   constructor(
     private http: HttpClient,
     private router: Router
@@ -95,7 +97,8 @@ export class AuthService {
   }
 
   private handleAuthentication(responseData: AuthResponseData): AuthUser {
-    const expirationDate = new Date(new Date().getTime() + +responseData.expiresIn * 1000);
+    const expiresInMs = +responseData.expiresIn * 1000;
+    const expirationDate = new Date(new Date().getTime() + expiresInMs);
     const authUser = new AuthUser(
       responseData.localId,
       responseData.email,
@@ -105,6 +108,7 @@ export class AuthService {
     );
     this.authUserSubject.next(authUser);
     localStorage.setItem('userData', JSON.stringify(authUser));
+    this.autoLogout(expiresInMs);
     return authUser;
   }
 
@@ -134,5 +138,38 @@ export class AuthService {
     this.authUserSubject.next(null);
     localStorage.removeItem('userData');
     this.router.navigate(['']);
+
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+      this.tokenExpirationTimer = null;
+    }
+  }
+
+  public autoLogin(): void {
+    const parsedUser: {
+      id: string,
+      email: string,
+      token: string,
+      expirationDate: string,
+      refreshToken: string
+    } = JSON.parse(localStorage.getItem('userData'));
+    if (parsedUser) {
+      const authUser = new AuthUser(
+        parsedUser.id,
+        parsedUser.email,
+        parsedUser.token,
+        new Date(parsedUser.expirationDate),
+        parsedUser.refreshToken
+      );
+      if (authUser.getToken()) {
+        this.authUserSubject.next(authUser);
+      }
+    }
+  }
+
+  public autoLogout(expiresInMs: number): void {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+    }, expiresInMs);
   }
 }
