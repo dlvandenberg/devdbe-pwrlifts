@@ -162,7 +162,10 @@ export class AuthService {
         parsedUser.refreshToken
       );
       if (authUser.getToken()) {
+        console.log('autologin');
         this.authUserSubject.next(authUser);
+        this.router.navigate(['']);
+        // TODO currently redirects on auto login, but also when user is on /weights/ for example
       }
     }
   }

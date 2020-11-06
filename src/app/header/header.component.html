@@ -28,11 +28,21 @@
         <div class="navbar-nav navbar-right">
             <a class="nav-item nav-link"
                 *ngIf="!isAuthenticated"
+                aria-label="Account Login"
                 routerLinkActive="active"
                 routerLink="auth" i18n>Login</a>
+            <a class="nav-item nav-link"
+                aria-label="Profile"
+                routerLink="user"
+                *ngIf="isAuthenticated">
+                <span class="oi oi-person"></span>
+            </a>
             <a class="nav-item nav-link" 
                 *ngIf="isAuthenticated"
-                (click)="onLogout()" i18n>Logout</a>
+                aria-label="Account Logout"
+                (click)="onLogout()" i18n>
+                <span class="oi oi-account-logout"></span>
+            </a>
         </div>
     </div>
 </nav>
