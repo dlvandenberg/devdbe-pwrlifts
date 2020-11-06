@@ -12,7 +12,7 @@
             <div class="dropdown" *ngIf="isAuthenticated">
                 <a class="nav-item nav-link dropdown-toggle" appDropdown #bodyDropdown="appDropdown" role="button">Body</a>
                 <div class="dropdown-menu" [class.show]="bodyDropdown.isOpen">
-                    <a class="dropdown-item" i18n>Weight</a>
+                    <a class="dropdown-item" routerLink="weight" i18n>Weight</a>
                     <a class="dropdown-item" i18n>Bodyfat</a>
                 </div>
             </div>

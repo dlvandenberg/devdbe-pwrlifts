@@ -4,7 +4,8 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  { path: '', component: HomeComponent, pathMatch: 'full' }
+  { path: 'weight', loadChildren: () => import('./weight/weight.module').then(m => m.WeightModule) },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
