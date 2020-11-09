@@ -1,5 +1,13 @@
 <div class="row">
     <div class="col-xs-12">
-        User preferences
+        Loaded user: {{ user.firstName }}
+        <br/>
+        Last name: {{ user.lastName }}
+        <br/>
+        Email: {{ user.email }}
+        <br/>
+        Gender: {{ user.gender }}
+        <br/>
+        Date of birth: {{ user.dateOfBirth | date:'dd-MM-yyyy' }}
     </div>
 </div>

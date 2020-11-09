@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { User } from './model/user.model';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  public user: User;
+
+  constructor(private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.data
+      .pipe(map(data => data.user))
+      .subscribe(user => this.user = user);
   }
 
 }

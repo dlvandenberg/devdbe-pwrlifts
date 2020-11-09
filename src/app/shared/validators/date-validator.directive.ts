@@ -9,7 +9,7 @@ import * as moment from 'moment';
 export class DateValidatorDirective implements Validator {
 
   public validate(control: AbstractControl): ValidationErrors {
-    const date: moment.Moment = moment(control.value, 'YYYY-mm-dd');
+    const date: moment.Moment = moment(control.value, 'YYYY-MM-DD');
     return date.isValid ? null : { dateInvalid: true };
   }
 }

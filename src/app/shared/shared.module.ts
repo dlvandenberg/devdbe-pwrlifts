@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DateValidatorDirective } from './date-validator.directive';
+import { DateValidatorDirective } from './validators/date-validator.directive';
 import { DropdownDirective } from './dropdown.directive';
 import { FormsModule } from '@angular/forms';
-import { PasswordValidatorDirective } from './password-validator.directive';
+import { PasswordValidatorDirective } from './validators/password-validator.directive';
 import { ErrorComponent } from './error/error.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 

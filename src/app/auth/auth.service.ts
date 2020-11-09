@@ -3,10 +3,10 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '@app-env/environment';
 import { Gender } from '../shared/types/gender.enum';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map } from 'rxjs/operators';
 import { AuthUser } from './auth-user.model';
 import { Router } from '@angular/router';
-import { UserService } from '../user/user.service';
+import { UserService } from '../user/services/user.service';
 
 export interface AuthResponseData {
   idToken: string;
@@ -58,7 +58,7 @@ export class AuthService {
       returnSecureToken: true
     }).pipe(
       map(responseData => this.handleAuthentication(responseData)),
-      tap((authUser: AuthUser) => this.userService.create({
+      exhaustMap((authUser: AuthUser) => this.userService.create({
         id: authUser.id,
         firstName: data.firstName,
         lastName: data.lastName,
@@ -69,7 +69,7 @@ export class AuthService {
       catchError(errorResponse => this.handleError(errorResponse))
     ).subscribe(
       _ => {
-        this.router.navigate(['user']);
+        this.router.navigate(['dashboard']);
         this.loadingSubject.next(false);
         this.errorMessageSubject.next(null);
       },
@@ -90,7 +90,7 @@ export class AuthService {
       catchError(errorResponse => this.handleError(errorResponse))
     ).subscribe(
       _ => {
-        this.router.navigate(['/']);
+        this.router.navigate(['dashboard']);
         this.loadingSubject.next(false);
         this.errorMessageSubject.next(null);
       },
@@ -118,6 +118,7 @@ export class AuthService {
 
   private handleError(errorResponse: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An unknown error occurred!';
+    console.log(errorResponse);
     if (!errorResponse.error || !errorResponse.error.error) {
       return throwError(errorMessage);
     }

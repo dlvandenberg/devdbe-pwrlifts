@@ -19,7 +19,7 @@ export class SignUpComponent {
       firstName: values.firstName,
       lastName: values.lastName,
       gender: values.gender,
-      dateOfBirth: moment(values.dateOfBirth, 'yyyy-mm-dd').toDate(),
+      dateOfBirth: values.dateOfBirth,
       email: values.email,
       password: values.password
     });

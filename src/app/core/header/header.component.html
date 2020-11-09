@@ -8,7 +8,7 @@
 
     <div class="navbar-collapse justify-content-between" [class.collapse]="collapsed">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" *ngIf="isAuthenticated" i18n>Dashboard</a>
+            <a class="nav-item nav-link" *ngIf="isAuthenticated" routerLinkActive="active" routerLink="dashboard" i18n>Dashboard</a>
             <div class="dropdown" *ngIf="isAuthenticated">
                 <a class="nav-item nav-link dropdown-toggle" appDropdown #bodyDropdown="appDropdown" role="button">Body</a>
                 <div class="dropdown-menu" [class.show]="bodyDropdown.isOpen">
