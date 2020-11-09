@@ -50,13 +50,11 @@ export class AuthService {
 
   public signUp(data: SignUpData): void {
     this.loadingSubject.next(true);
-    console.log('AuthServic signup: ' + JSON.stringify(data));
     this.http.post<AuthResponseData>(this.signUpUrl, {
       email: data.email,
       password: data.password,
       returnSecureToken: true
     }).pipe(
-      tap(_ => console.log('succesful sign up')),
       map(responseData => this.handleAuthentication(responseData)),
       catchError(errorResponse => this.handleError(errorResponse))
     ).subscribe(
@@ -66,7 +64,6 @@ export class AuthService {
         this.errorMessageSubject.next(null);
       },
       errorMessage => {
-        console.log('error: ' + errorMessage);
         this.errorMessageSubject.next(errorMessage);
         this.loadingSubject.next(false);
       });
@@ -74,7 +71,6 @@ export class AuthService {
 
   public login(email: string, password: string): void {
     this.loadingSubject.next(true);
-    console.log('AuthService login: ' + email + ', ' + password);
     this.http.post<AuthResponseData>(this.loginUrl, {
       email,
       password,
@@ -90,7 +86,6 @@ export class AuthService {
         this.errorMessageSubject.next(null);
       },
       errorMessage => {
-        console.log('error: ' + errorMessage);
         this.errorMessageSubject.next(errorMessage);
         this.loadingSubject.next(false);
       });
@@ -134,7 +129,6 @@ export class AuthService {
   }
 
   public logout(): void {
-    console.log('AuthService logout');
     this.authUserSubject.next(null);
     localStorage.removeItem('userData');
     this.router.navigate(['']);
@@ -162,10 +156,7 @@ export class AuthService {
         parsedUser.refreshToken
       );
       if (authUser.getToken()) {
-        console.log('autologin');
         this.authUserSubject.next(authUser);
-        this.router.navigate(['']);
-        // TODO currently redirects on auto login, but also when user is on /weights/ for example
       }
     }
   }
