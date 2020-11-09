@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  firebaseApiKey: 'AIzaSyAdktf3mNVSiB5DZEoCABH68S4YVc3BECM'
+  firebase: {
+    apiKey: 'AIzaSyAdktf3mNVSiB5DZEoCABH68S4YVc3BECM',
+    databaseUrl: 'https://devdbe-pwrlifts-dev.firebaseio.com/'
+  }
 };
 
 /*

@@ -1,4 +1,7 @@
 export const environment = {
   production: true,
-  firebaseApiKey: 'AIzaSyDlRqlp6skN3EnOvA_udEty4fcAq8oKsyE'
+  firebase: {
+    apiKey: 'AIzaSyDlRqlp6skN3EnOvA_udEty4fcAq8oKsyE',
+    databaseUrl: 'https://devdbe-pwrlifts.firebaseio.com/'
+  }
 };

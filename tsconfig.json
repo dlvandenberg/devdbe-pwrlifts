@@ -17,8 +17,8 @@
       "dom"
     ],
     "paths": {
-      "@env/*": [ "src/environments/*" ],
-      "@types/*": [ "src/app/shared/*" ]
+      "@app-env/*": [ "src/environments/*" ],
+      "@app-types/*": [ "src/app/shared/types/*" ]
     }
   }
 }
