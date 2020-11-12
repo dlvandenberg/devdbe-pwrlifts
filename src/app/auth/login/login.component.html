@@ -2,9 +2,9 @@
     <div class="col-xs-12 col-md-6 offset-md-3">
         <div *ngIf="authService.loading$ | async" style="text-align: center;"><app-loading-spinner></app-loading-spinner></div>
         <app-error
-            *ngIf="authService.errorMessage$ | async"
-            [message]="authService.errorMessage$ | async "
-            (dismiss)="authService.clearError()"
+            *ngIf="authService.error$ | async"
+            [message]="authService.error$ | async"
+            (dismiss)="authService.handleError()"
         ></app-error>
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm.form)" *ngIf="!(authService.loading$ | async)">
             <div class="form-group">

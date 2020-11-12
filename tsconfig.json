@@ -18,7 +18,9 @@
     ],
     "paths": {
       "@app-env/*": [ "src/environments/*" ],
-      "@app-types/*": [ "src/app/shared/types/*" ]
+      "@app-types/*": [ "src/app/shared/types/*" ],
+      "@app-auth/*": [ "src/app/auth/*" ],
+      "@app-user/*": [ "src/app/user/*" ]
     }
   }
 }

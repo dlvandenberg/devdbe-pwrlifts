@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuardService } from '../auth/auth-guard.service';
+import { AuthGuardService } from '@app-auth/services/auth-guard.service';
 
 import { WeightComponent } from './weight.component';
 
