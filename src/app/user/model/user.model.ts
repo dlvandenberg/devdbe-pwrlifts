@@ -1,6 +1,15 @@
 import { Gender } from '@app-types/gender.enum';
 
-export class User {
+export interface IUser {
+    id: string;
+    firstName: string;
+    lastName: string;
+    dateOfBirth: Date;
+    gender: Gender;
+    email: string;
+}
+
+export class User implements IUser{
     constructor(
         public id: string,
         public firstName: string,

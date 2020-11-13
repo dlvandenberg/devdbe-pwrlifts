@@ -13,6 +13,18 @@ export const createUser = createAction(
     }> ()
 );
 
+export const updateUser = createAction(
+    '[User] Update User',
+    props<{
+        id: string,
+        firstName: string,
+        lastName: string,
+        dateOfBirth: Date,
+        email: string,
+        gender: Gender
+    }>()
+);
+
 export const storeUser = createAction(
     '[User] Store User',
     props<{
@@ -29,3 +41,10 @@ export const fetchUser = createAction(
     '[User] Fetch User',
     props<{ id: string }>()
 );
+
+export const userError = createAction(
+    '[User] Error',
+    props<{ errorMessage: string }>()
+);
+
+export const clearError = createAction('[User] Clear Error');

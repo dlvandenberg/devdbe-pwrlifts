@@ -3,8 +3,8 @@ export class AuthUser {
         public id: string,
         public email: string,
         private token: string,
+        public refreshToken: string,
         private expirationDate: Date,
-        public refreshToken: string
     ) {
 
     }

@@ -31,7 +31,7 @@ const handleAuthentication = (
     expiresIn: number
 ) => {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-    const user = new AuthUser(email, userId, token, expirationDate, refreshToken);
+    const user = new AuthUser(userId, email, token, refreshToken, expirationDate);
     localStorage.setItem('userData', JSON.stringify(user));
     return fromAuthActions.authenticateSuccess({
         userId,
@@ -135,7 +135,7 @@ export class AuthEffects {
             tap(() => {
                 this.authService.clearLogoutTimer();
                 localStorage.removeItem('userData');
-                this.router.navigate(['/auth']);
+                this.router.navigate(['auth']);
             })
         ), { dispatch: false }
     );

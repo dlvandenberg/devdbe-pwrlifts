@@ -21,7 +21,7 @@ const authReducer = createReducer(
     initialState,
     on(
         fromAuthActions.logout,
-        (state) => ({ ...state, user: null })
+        (state) => ({ ...state, authUser: null })
     ),
     on(
         fromAuthActions.loginStart,
@@ -29,13 +29,13 @@ const authReducer = createReducer(
     ),
     on(
         fromAuthActions.signUpStart,
-        (state) => ({ ...state, authError: null, loading: true, user: null })
+        (state) => ({ ...state, authError: null, loading: true, authUser: null })
     ),
     on(
         fromAuthActions.authenticateSuccess,
-        (state, { email, userId, token, refreshToken, expirationDate }) => ({
+        (state, { userId, email, token, refreshToken, expirationDate }) => ({
             ...state,
-            authUser: new AuthUser(userId, email, token, expirationDate, refreshToken),
+            authUser: new AuthUser(userId, email, token, refreshToken, expirationDate),
             authError: null,
             loading: false
         })

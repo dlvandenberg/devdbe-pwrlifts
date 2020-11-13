@@ -2,16 +2,15 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Actions, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { exhaustMap, map, switchMap, take } from 'rxjs/operators';
+import { exhaustMap, map, take } from 'rxjs/operators';
 import { AuthService } from '@app-auth/services/auth.service';
-import { User } from '../model/user.model';
 import { UserService } from './user.service';
 import * as fromUserActions from '../store/user.actions';
 
 @Injectable({
     providedIn: 'root'
 })
-export class UserResolver implements Resolve<User> {
+export class UserResolver implements Resolve<boolean> {
 
     constructor(
         private readonly authService: AuthService,
@@ -19,7 +18,7 @@ export class UserResolver implements Resolve<User> {
         private readonly actions$: Actions
     ) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): User | Observable<User> | Promise<User> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
         return this.userService.user$
             .pipe(
                 take(1),
@@ -28,16 +27,17 @@ export class UserResolver implements Resolve<User> {
                         return this.authService.authUser$.pipe(
                             take(1),
                             map(authUser => authUser.id),
-                            switchMap(id => {
+                            exhaustMap(id => {
                                 this.userService.fetchUser(id);
                                 return this.actions$.pipe(
                                     ofType(fromUserActions.storeUser),
-                                    take(1)
+                                    take(1),
+                                    map(_ => true)
                                 );
                             })
                         );
                     } else {
-                        return of(user);
+                        return of(true);
                     }
                 })
             );

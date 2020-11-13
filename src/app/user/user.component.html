@@ -1,13 +1,79 @@
 <div class="row">
-    <div class="col-xs-12">
-        Loaded user: {{ user.firstName }}
-        <br/>
-        Last name: {{ user.lastName }}
-        <br/>
-        Email: {{ user.email }}
-        <br/>
-        Gender: {{ user.gender }}
-        <br/>
-        Date of birth: {{ user.dateOfBirth | date:'dd-MM-yyyy' }}
+    <div class="col-xs-12 col-md-6 offset-md-3">
+        <app-error
+            *ngIf="userService.error$ | async"
+            [message]="userService.error$ | async"
+            (dismiss)="userService.handleError()"
+        ></app-error>
+        <div class="card border-dark mb-3 bg-dark text-white">
+            <div class="card-header text-right">
+                <span class="oi oi-check text-success p-2" *ngIf="(userService.saved$ | async) && userForm.dirty"></span>
+                <button class="btn btn-primary" (click)="updateUser(userForm)"
+                    [disabled]="userForm.pristine || (userForm.dirty && !userForm.valid)" i18n>Save changes</button>
+            </div>
+            <div class="card-body bg-light text-dark">
+                <div class="card-text">
+                    <form #userForm="ngForm">
+                        <div class="form-group row">
+                            <label for="firstName" class="col-sm-2 col-form-label" i18n>First name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="firstName" placeholder="Enter first name"
+                                    [ngModel]="user.firstName" name="firstName" required #firstNameControl="ngModel"
+                                    [class.is-invalid]="firstNameControl.dirty && !firstNameControl.valid">
+                                <div class="invalid-feedback"
+                                    *ngIf="firstNameControl.dirty && !firstNameControl.valid">
+                                    Please enter a first name
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastName" class="col-sm-2 col-form-label" i18n>Last name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="lastName" placeholder="Enter last name"
+                                    [ngModel]="user.lastName" name="lastName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label" i18n>Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    [value]="user.email">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <span i18n>Gender</span>
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-input" id="genderOption1"
+                                        [ngModel]="user.gender" required name="gender" value="MALE">
+                                    <label for="genderOption1" class="form-check-label" i18n>Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-input" id="genderOption2"
+                                        [ngModel]="user.gender" required name="gender" value="FEMALE">
+                                    <label for="genderOption2" class="form-check-label" i18n>Female</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="dateOfBirth" class="col-sm-2 col-form-label" i18n>Date of Birth</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" id="dateOfBirth"
+                                    placeholder="Enter date of birth (dd-mm-yyyy)"
+                                    [ngModel]="user.dateOfBirth | date:'yyyy-MM-dd'" name="dateOfBirth" required
+                                    pattern="\d{4}-\d{2}-\d{2}" #dateOfBirthControl="ngModel" appDateValidator
+                                    [class.is-invalid]="dateOfBirthControl.dirty && !dateOfBirthControl.valid">
+                                <div class="invalid-feedback"
+                                    *ngIf="dateOfBirthControl.dirty && !dateOfBirthControl.valid">
+                                    Please enter a valid date
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

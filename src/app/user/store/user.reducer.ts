@@ -1,16 +1,22 @@
 import { Action, createFeatureSelector, createReducer, on } from '@ngrx/store';
-import { User } from '../model/user.model';
+import { IUser, User } from '../model/user.model';
 import * as fromUserActions from './user.actions';
 
 export const featureKey = 'user';
 export const selectState = createFeatureSelector<State>(featureKey);
 
 export interface State {
-    user: User;
+    user: IUser;
+    userError: string;
+    savingChanges: boolean;
+    changesSaved: boolean;
 }
 
 const initialState: State = {
-    user: null
+    user: null,
+    userError: null,
+    savingChanges: false,
+    changesSaved: null,
 };
 
 const userReducer = createReducer(
@@ -26,7 +32,33 @@ const userReducer = createReducer(
                 dateOfBirth,
                 gender,
                 email
-            )})
+            ),
+            userError: null,
+            changesSaved: state.savingChanges ? true : state.changesSaved,
+            savingChanges: false
+        })
+    ),
+    on(
+        fromUserActions.updateUser,
+        (state) => ({
+            ...state,
+            savingChanges: true,
+            changesSaved: false,
+            userError: false
+        })
+    ),
+    on(
+        fromUserActions.userError,
+        (state, { errorMessage }) => ({
+            ...state,
+            userError: errorMessage,
+            changesSaved: false,
+            savingChanges: false
+        })
+    ),
+    on(
+        fromUserActions.clearError,
+        (state) => ({ ...state, userError: null })
     )
 );
 

@@ -41,6 +41,28 @@ export class UserEffects {
         )
     );
 
+    updateUser$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(fromUserActions.updateUser),
+            exhaustMap(action =>
+                this.http.put<UserResponseData>(environment.firebase.databaseUrl + 'users/' + action.id + '.json', {
+                    firstName: action.firstName,
+                    lastName: action.lastName,
+                    dateOfBirth: action.dateOfBirth,
+                    gender: action.gender,
+                    email: action.email
+                }).pipe(map(response => fromUserActions.storeUser({
+                    id: action.id,
+                    firstName: response.firstName,
+                    lastName: response.lastName,
+                    dateOfBirth: new Date(response.dateOfBirth),
+                    gender: response.gender,
+                    email: response.email
+                })))
+            )
+        )
+    );
+
     fetchUser$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromUserActions.fetchUser),
