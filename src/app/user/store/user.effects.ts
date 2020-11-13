@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '@app-env/environment';
 import { Gender } from '@app-types/gender.enum';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { exhaustMap, map } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, exhaustMap, map } from 'rxjs/operators';
 
 import * as fromUserActions from './user.actions';
 
@@ -51,14 +52,17 @@ export class UserEffects {
                     dateOfBirth: action.dateOfBirth,
                     gender: action.gender,
                     email: action.email
-                }).pipe(map(response => fromUserActions.storeUser({
-                    id: action.id,
-                    firstName: response.firstName,
-                    lastName: response.lastName,
-                    dateOfBirth: new Date(response.dateOfBirth),
-                    gender: response.gender,
-                    email: response.email
-                })))
+                }).pipe(
+                    map(response => fromUserActions.storeUser({
+                        id: action.id,
+                        firstName: response.firstName,
+                        lastName: response.lastName,
+                        dateOfBirth: new Date(response.dateOfBirth),
+                        gender: response.gender,
+                        email: response.email
+                    })),
+                    catchError(() => of(fromUserActions.userError({ errorMessage: 'Failed to update user' })))
+                )
             )
         )
     );
@@ -75,7 +79,8 @@ export class UserEffects {
                         dateOfBirth: new Date(response.dateOfBirth),
                         gender: response.gender,
                         email: response.email
-                    }))
+                    })),
+                    catchError(() => of(fromUserActions.userError({ errorMessage: 'Failed to retrieve user' })))
                 )
             )
         )
