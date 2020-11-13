@@ -24,7 +24,7 @@ import { UserEffects } from '@app-user/store/user.effects';
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot(fromApp.appReducer),
+    StoreModule.forRoot(fromApp.appReducer, { metaReducers: fromApp.metaReducers }),
     EffectsModule.forRoot([ AuthEffects, UserEffects ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
