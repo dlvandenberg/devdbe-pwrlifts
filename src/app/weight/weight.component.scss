@@ -5,3 +5,9 @@
 .actions > span:last-child {
     padding: 0;
 }
+
+@media (max-width: 576px) {
+    .hideOnSmall {
+        display:none;
+    }
+}

@@ -1,0 +1,43 @@
+<app-confirmation-dialog [confirmDisabled]="!weightForm.valid && weightForm.dirty"
+    title="New weight" confirmButtonText="Save weight"
+    (cancel)="weightService.cancelEditing()"
+    (confirm)="weightService.create(weightForm.value)"
+>
+    <form [formGroup]="weightForm">
+        <div class="form-group">
+            <label for="inputWeight" i18n>Weight (kg)</label>
+            <input type="text" 
+                class="form-control" 
+                id="inputWeight"
+                placeholder="Weight in kilograms"
+                formControlName="weight"
+            >
+        </div>
+        <div class="form-group">
+            <label for="inputCalories" i18n>Calories (kcal)</label>
+            <input type="text" 
+                class="form-control" 
+                id="inputCalories"
+                placeholder="Calories in kcal"
+                formControlName="calories"
+            >
+        </div>
+        <div class="form-group">
+            <label for="inputDate" i18n>Date measured</label>
+            <input type="date" 
+                class="form-control" 
+                id="inputDate"
+                placeholder=""
+                formControlName="measuredOn"
+            >
+        </div>
+        <div class="form-group">
+            <label for="inputWeight" i18n>Part of day</label>
+            <select class="custom-select" formControlName="partOfDayMeasured">
+                <option [selected]="partOfDayMeasured === timeOfDayEnum.MORNING" [value]="timeOfDayEnum.MORNING" i18n>Morning</option>
+                <option [selected]="partOfDayMeasured === timeOfDayEnum.AFTERNOON" [value]="timeOfDayEnum.AFTERNOON" i18n>Afternoon</option>
+                <option [selected]="partOfDayMeasured === timeOfDayEnum.EVENING" [value]="timeOfDayEnum.EVENING" i18n>Evening</option>
+            </select>
+        </div>
+    </form>
+</app-confirmation-dialog>

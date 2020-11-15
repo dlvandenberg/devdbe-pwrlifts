@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TimeOfDay } from './model/time-of-day.enum';
+import { Weight } from './model/weight.model';
+import { WeightService } from './services/weight.service';
 
 @Component({
   selector: 'app-weight',
@@ -6,33 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./weight.component.scss']
 })
 export class WeightComponent implements OnInit {
-
-  public weights = [
-    {
-      weight: 88,
-      dateMeasured: new Date('2020-10-10')
-    },
-    {
-      weight: 88.5,
-      dateMeasured: new Date('2020-10-11')
-    },
-    {
-      weight: 92,
-      dateMeasured: new Date('2020-10-12')
-    },
-    {
-      weight: 89.5,
-      dateMeasured: new Date('2020-10-13')
-    },
-    {
-      weight: 88,
-      dateMeasured: new Date('2020-10-14')
-    },
-  ];
-
-  constructor() { }
+  constructor(public readonly weightService: WeightService) { }
 
   ngOnInit(): void {
+    this.weightService.fetchWeights();
   }
-
 }

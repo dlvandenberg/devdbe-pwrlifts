@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { PasswordValidatorDirective } from './validators/password-validator.directive';
 import { ErrorComponent } from './error/error.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     DropdownDirective,
     PasswordValidatorDirective,
     ErrorComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     DropdownDirective,
     FormsModule,
     ErrorComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ConfirmationDialogComponent
   ]
 })
 export class SharedModule { }

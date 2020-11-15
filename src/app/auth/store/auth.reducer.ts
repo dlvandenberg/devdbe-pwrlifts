@@ -1,9 +1,10 @@
-import { Action, createFeatureSelector, createReducer, on } from '@ngrx/store';
+import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import { AuthUser } from '../model/auth-user.model';
 import * as fromAuthActions from './auth.actions';
 
 export const featureKey = 'auth';
 export const selectState = createFeatureSelector<State>(featureKey);
+export const selectAuthUserId = createSelector(selectState, (state => state.authUser ? state.authUser.id : null));
 
 export interface State {
     authUser: AuthUser;
