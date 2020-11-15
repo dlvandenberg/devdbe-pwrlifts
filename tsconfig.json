@@ -19,6 +19,7 @@
     "paths": {
       "@app-env/*": [ "src/environments/*" ],
       "@app-types/*": [ "src/app/shared/types/*" ],
+      "@app-validators/*": [ "src/app/shared/validators/*" ],
       "@app-auth/*": [ "src/app/auth/*" ],
       "@app-user/*": [ "src/app/user/*" ],
       "@app-weight/*": [ "src/app/weight/*" ]
