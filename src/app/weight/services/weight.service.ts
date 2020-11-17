@@ -54,4 +54,8 @@ export class WeightService {
   public fetchWeights(): void {
     this.store.dispatch(fromWeightActions.fetchWeights());
   }
+
+  public delete(id: string): void {
+    this.store.dispatch(fromWeightActions.deleteWeight({ id }));
+  }
 }

@@ -48,6 +48,19 @@ export class WeightEffects {
         )
     );
 
+    deleteWeight$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(fromWeightActions.deleteWeight),
+            withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
+            exhaustMap(([ action, authUserId ]) =>
+                this.http.delete(environment.firebase.databaseUrl + 'weights/' + authUserId + '/' + action.id + '.json')
+                .pipe(
+                    map(() => fromWeightActions.fetchWeights())
+                )
+            )
+        )
+    );
+
     fetchWeights$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromWeightActions.fetchWeights),

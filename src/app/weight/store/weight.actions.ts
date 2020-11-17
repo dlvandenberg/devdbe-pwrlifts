@@ -39,6 +39,11 @@ export const updateWeight = createAction(
     }>()
 );
 
+export const deleteWeight = createAction(
+    '[Weight] Delete',
+    props<{ id: string }>()
+);
+
 export const fetchWeights = createAction('[Weight] Fetch Weights');
 
 export const storeWeights = createAction(
