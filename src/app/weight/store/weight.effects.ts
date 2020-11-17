@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
@@ -20,8 +20,9 @@ export class WeightEffects {
                 this.http.post(environment.firebase.databaseUrl + 'weights/' + authUserId + '.json', {
                     weight: action.weight,
                     calories: action.calories,
-                    measuredOn: action.measuredOn,
-                    partOfDayMeasured: action.partOfDayMeasured
+                    measuredOn: action.measuredOn.getTime(),
+                    partOfDayMeasured: action.partOfDayMeasured,
+                    createdOn: -1 * action.measuredOn.getTime()
                 }).pipe(
                     map(() => fromWeightActions.fetchWeights())
                 )
@@ -37,8 +38,9 @@ export class WeightEffects {
                 this.http.patch(environment.firebase.databaseUrl + 'weights/' + authUserId + '/' + action.id + '.json', {
                     weight: action.weight,
                     calories: action.calories,
-                    measuredOn: action.measuredOn,
-                    partOfDayMeasured: action.partOfDayMeasured
+                    measuredOn: action.measuredOn.getTime(),
+                    partOfDayMeasured: action.partOfDayMeasured,
+                    createdOn: -1 * action.measuredOn.getTime()
                 }).pipe(
                     map(() => fromWeightActions.fetchWeights())
                 )
@@ -51,13 +53,23 @@ export class WeightEffects {
             ofType(fromWeightActions.fetchWeights),
             withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
             exhaustMap(([_, authUserId]) =>
-                this.http.get<Weight[]>(environment.firebase.databaseUrl + 'weights/' + authUserId + '.json')
+                this.http.get<Weight[]>(environment.firebase.databaseUrl + 'weights/' + authUserId + '.json',
+                {
+                    params: new HttpParams().set('orderBy', '"createdOn"').set('startAt', '' + (-1 * new Date().getTime()))
+                })
                 .pipe(
                     map(weights => {
                         const weightList: Weight[] = [];
+                        if (weights === null) {
+                            return fromWeightActions.storeWeights({ weights: []});
+                        }
                         for (const i of Object.keys(weights)) {
                             const weight = weights[i];
-                            weightList.push({ id: i, ...weight });
+                            weightList.push({
+                                id: i,
+                                ...weight,
+                                measuredOn: new Date(weight.measuredOn)
+                            });
                         }
                         return fromWeightActions.storeWeights({ weights: weightList });
                     })

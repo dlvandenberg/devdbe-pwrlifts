@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { dateValidator } from '@app-validators/date-validator.directive';
+import * as moment from 'moment';
 import { TimeOfDay } from '../model/time-of-day.enum';
 import { Weight } from '../model/weight.model';
 import { WeightService } from '../services/weight.service';
@@ -64,10 +65,14 @@ export class EditWeightComponent implements OnInit {
     if (this.weight.id) {
       this.weightService.update({
         id: this.weight.id,
-        ...this.weightForm.value
+        ...this.weightForm.value,
+        measuredOn: moment(this.weightForm.value.measuredOn, 'YYYY-MM-DD').toDate()
       });
     } else {
-      this.weightService.create(this.weightForm.value);
+      this.weightService.create({
+        ...this.weightForm.value,
+        measuredOn: moment(this.weightForm.value.measuredOn, 'YYYY-MM-DD').toDate()
+      });
     }
   }
 
