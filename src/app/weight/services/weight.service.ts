@@ -25,12 +25,26 @@ export class WeightService {
     );
   }
 
+  get editingWeight$(): Observable<Weight> {
+    return this.store.select(fromWeight.selectState).pipe(
+      map(state => state.editingWeight)
+    );
+  }
+
   public create(weight: Weight): void {
     this.store.dispatch(fromWeightActions.createWeight(weight));
   }
 
+  public update(weight: Weight): void {
+    this.store.dispatch(fromWeightActions.updateWeight(weight));
+  }
+
   public startEditing(): void {
     this.store.dispatch(fromWeightActions.startEditing());
+  }
+
+  public startEditingExisting(weight: Weight): void {
+    this.store.dispatch(fromWeightActions.startEditingExisting(weight));
   }
 
   public cancelEditing(): void {

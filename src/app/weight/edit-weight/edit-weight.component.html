@@ -1,7 +1,7 @@
 <app-confirmation-dialog [confirmDisabled]="!weightForm.valid && weightForm.dirty"
     title="New weight" confirmButtonText="Save weight"
     (cancel)="weightService.cancelEditing()"
-    (confirm)="weightService.create(weightForm.value)"
+    (confirm)="saveWeight()"
 >
     <form [formGroup]="weightForm">
         <div class="form-group">

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { dateValidator } from '@app-validators/date-validator.directive';
 import { TimeOfDay } from '../model/time-of-day.enum';
@@ -16,6 +16,26 @@ export class EditWeightComponent implements OnInit {
 
   public weightForm: FormGroup;
   public timeOfDayEnum = TimeOfDay;
+  private editingWeight: Weight;
+
+  @Input()
+  set weight(newWeight: Weight) {
+    if (newWeight === null) {
+      this.editingWeight = {
+        id: null,
+        weight: 0,
+        calories: 0,
+        measuredOn: new Date(),
+        partOfDayMeasured: TimeOfDay.MORNING
+      };
+    } else {
+      this.editingWeight = newWeight;
+    }
+  }
+
+  get weight(): Weight {
+    return this.editingWeight;
+  }
 
   @Output()
   public cancel = new EventEmitter<null>();
@@ -31,13 +51,24 @@ export class EditWeightComponent implements OnInit {
 
   ngOnInit(): void {
     this.weightForm = this.formBuilder.group({
-      weight: this.formBuilder.control('', [Validators.required, Validators.min(0)]),
-      calories: this.formBuilder.control('', [Validators.required, Validators.min(0)]),
-      measuredOn: this.formBuilder.control(this.datePipe.transform(new Date(), 'yyyy-MM-dd'), [
+      weight: this.formBuilder.control(this.weight.weight, [Validators.required, Validators.min(0)]),
+      calories: this.formBuilder.control(this.weight.calories, [Validators.required, Validators.min(0)]),
+      measuredOn: this.formBuilder.control(this.datePipe.transform(this.weight.measuredOn, 'yyyy-MM-dd'), [
         Validators.required, dateValidator
       ]),
-      partOfDayMeasured: this.formBuilder.control(TimeOfDay.MORNING, Validators.required)
+      partOfDayMeasured: this.formBuilder.control(this.weight.partOfDayMeasured, Validators.required)
     });
+  }
+
+  public saveWeight(): void {
+    if (this.weight.id) {
+      this.weightService.update({
+        id: this.weight.id,
+        ...this.weightForm.value
+      });
+    } else {
+      this.weightService.create(this.weightForm.value);
+    }
   }
 
   get partOfDayMeasured(): TimeOfDay {

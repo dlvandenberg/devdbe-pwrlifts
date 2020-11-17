@@ -29,6 +29,23 @@ export class WeightEffects {
         )
     );
 
+    updateWeight$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(fromWeightActions.updateWeight),
+            withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
+            exhaustMap(([action, authUserId]) =>
+                this.http.patch(environment.firebase.databaseUrl + 'weights/' + authUserId + '/' + action.id + '.json', {
+                    weight: action.weight,
+                    calories: action.calories,
+                    measuredOn: action.measuredOn,
+                    partOfDayMeasured: action.partOfDayMeasured
+                }).pipe(
+                    map(() => fromWeightActions.fetchWeights())
+                )
+            )
+        )
+    );
+
     fetchWeights$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromWeightActions.fetchWeights),

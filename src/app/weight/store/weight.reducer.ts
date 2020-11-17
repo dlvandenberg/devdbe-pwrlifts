@@ -8,26 +8,42 @@ export const selectState = createFeatureSelector<State>(featureKey);
 export interface State {
     weights: Weight[];
     editing: boolean;
+    editingWeight: Weight;
 }
 
 const initialState: State = {
     weights: [],
-    editing: false
+    editing: false,
+    editingWeight: null
 };
 
 const weightReducer = createReducer(
     initialState,
     on(
         fromWeightActions.startEditing,
-        (state) => ({ ...state, editing: true })
+        (state) => ({ ...state, editing: true, editingWeight: null })
     ),
     on(
         fromWeightActions.cancelEditing,
-        (state) => ({ ...state, editing: false })
+        (state) => ({ ...state, editing: false, editingWeight: null })
+    ),
+    on(
+        fromWeightActions.startEditingExisting,
+        (state, { id, weight, calories, measuredOn, partOfDayMeasured }) => ({
+            ...state,
+            editing: true,
+            editingWeight: {
+                id,
+                weight,
+                calories,
+                measuredOn,
+                partOfDayMeasured
+            }
+        })
     ),
     on(
         fromWeightActions.storeWeights,
-        (state, { weights }) => ({ ...state, editing: false, weights: [...weights] })
+        (state, { weights }) => ({ ...state, editing: false, weights: [...weights], editingWeight: null })
     )
 );
 

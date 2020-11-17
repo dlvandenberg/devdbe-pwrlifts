@@ -5,7 +5,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-md-8 offset-md-2">
-      <app-edit-weight *ngIf="weightService.editing$ | async"></app-edit-weight>
+      <app-edit-weight *ngIf="weightService.editing$ | async" [weight]="weightService.editingWeight$ | async"></app-edit-weight>
         <table class="table table-hover table-responsive-md">
             <thead class="thead-dark">
               <tr>
@@ -23,7 +23,7 @@
                 <td>{{ weight.measuredOn | date:'dd-MM-yyyy' }}</td>
                 <td class="hideOnSmall">{{ weight.partOfDayMeasured }}</td>
                 <td class="actions w-10">
-                    <span class="oi oi-pencil"></span>
+                    <span class="oi oi-pencil pointer" (click)="weightService.startEditingExisting(weight)"></span>
                     <span class="oi oi-trash"></span>
                 </td>
               </tr>
