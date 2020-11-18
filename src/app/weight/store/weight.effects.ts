@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as fromWeightActions from './weight.actions';
 import * as fromAuth from '@app-auth/store/auth.reducer';
-import { exhaustMap, map, tap, withLatestFrom } from 'rxjs/operators';
+import { exhaustMap, map, withLatestFrom } from 'rxjs/operators';
 import { environment } from '@app-env/environment';
 import { Weight } from '../model/weight.model';
 import { Store } from '@ngrx/store';
@@ -22,7 +22,6 @@ export class WeightEffects {
                     calories: action.calories,
                     measuredOn: action.measuredOn.getTime(),
                     partOfDayMeasured: action.partOfDayMeasured,
-                    createdOn: -1 * action.measuredOn.getTime()
                 }).pipe(
                     map(() => fromWeightActions.fetchWeights())
                 )
@@ -40,7 +39,6 @@ export class WeightEffects {
                     calories: action.calories,
                     measuredOn: action.measuredOn.getTime(),
                     partOfDayMeasured: action.partOfDayMeasured,
-                    createdOn: -1 * action.measuredOn.getTime()
                 }).pipe(
                     map(() => fromWeightActions.fetchWeights())
                 )
@@ -68,7 +66,9 @@ export class WeightEffects {
             exhaustMap(([_, authUserId]) =>
                 this.http.get<Weight[]>(environment.firebase.databaseUrl + 'weights/' + authUserId + '.json',
                 {
-                    params: new HttpParams().set('orderBy', '"createdOn"').set('startAt', '' + (-1 * new Date().getTime()))
+                    params: new HttpParams()
+                        .set('orderBy', '"measuredOn"')
+                        .set('endAt', new Date().getTime().toString())
                 })
                 .pipe(
                     map(weights => {
@@ -84,7 +84,8 @@ export class WeightEffects {
                                 measuredOn: new Date(weight.measuredOn)
                             });
                         }
-                        return fromWeightActions.storeWeights({ weights: weightList });
+                        const sortedList = weightList.sort((a, b) => b.measuredOn.getTime() - a.measuredOn.getTime());
+                        return fromWeightActions.storeWeights({ weights: sortedList });
                     })
                 )
             )
