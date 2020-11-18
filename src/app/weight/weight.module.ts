@@ -10,9 +10,10 @@ import { StoreModule } from '@ngrx/store';
 import * as fromWeight from './store/weight.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { WeightEffects } from './store/weight.effects';
+import { WeightChartComponent } from './weight-chart/weight-chart.component';
 
 @NgModule({
-  declarations: [WeightComponent, EditWeightComponent],
+  declarations: [WeightComponent, EditWeightComponent, WeightChartComponent],
   imports: [
     CommonModule,
     WeightRoutingModule,

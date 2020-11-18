@@ -7,6 +7,8 @@ import { PasswordValidatorDirective } from './validators/password-validator.dire
 import { ErrorComponent } from './error/error.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ChartsModule } from 'ng2-charts';
+import { LineBarChartComponent } from './charts/line-bar-chart/line-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -15,11 +17,13 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     PasswordValidatorDirective,
     ErrorComponent,
     LoadingSpinnerComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    LineBarChartComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   exports: [
     DateValidatorDirective,
@@ -28,7 +32,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     FormsModule,
     ErrorComponent,
     LoadingSpinnerComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    LineBarChartComponent
   ]
 })
 export class SharedModule { }
