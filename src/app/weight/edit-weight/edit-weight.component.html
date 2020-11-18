@@ -3,7 +3,7 @@
     (cancel)="weightService.cancelEditing()"
     (confirm)="saveWeight()"
 >
-    <form [formGroup]="weightForm">
+    <form [formGroup]="weightForm" (keyup.enter)="saveWeight()">
         <div class="form-group">
             <label for="inputWeight" i18n>Weight (kg)</label>
             <input type="number" 

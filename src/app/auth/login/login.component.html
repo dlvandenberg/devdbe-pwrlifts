@@ -6,7 +6,7 @@
             [message]="authService.error$ | async"
             (dismiss)="authService.handleError()"
         ></app-error>
-        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm.form)" *ngIf="!(authService.loading$ | async)">
+        <form #authForm="ngForm" (keyup.enter)="onSubmit(authForm.form)" (ngSubmit)="onSubmit(authForm.form)" *ngIf="!(authService.loading$ | async)">
             <div class="form-group">
                 <label for="email" i18n>Email address</label>
                 <input type="email" 

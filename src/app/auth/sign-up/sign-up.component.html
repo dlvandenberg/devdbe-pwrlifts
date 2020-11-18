@@ -6,7 +6,7 @@
             [message]="authService.error$ | async"
             (dismiss)="authService.handleError()"
         ></app-error>
-        <form appPasswordValidator #authForm="ngForm" (ngSubmit)="onSubmit(authForm.form)" *ngIf="!(authService.loading$ | async)">
+        <form appPasswordValidator #authForm="ngForm" (keyup.enter)="onSubmit(authForm.form)" (ngSubmit)="onSubmit(authForm.form)" *ngIf="!(authService.loading$ | async)">
             <small class="form-text text-muted" i18n>Fields with * are required</small>
             <br/>
             <div class="form-group">
