@@ -1,7 +1,7 @@
 {
   "name": "PWRLifts",
   "short_name": "PWRLifts",
-  "theme_color": "#468189",
+  "theme_color": "#1d201f",
   "background_color": "#1d201f",
   "display": "standalone",
   "scope": "./",

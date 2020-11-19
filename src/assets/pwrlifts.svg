@@ -1,8 +1,8 @@
-<svg id="PWR" xmlns="http://www.w3.org/2000/svg" width="614" height="305" viewBox="0 0 614 305">
+<svg id="Logo_4" data-name="Logo 4" xmlns="http://www.w3.org/2000/svg" width="80" height="90" viewBox="24 19 80 90">
   <defs>
     <style>
-      .cls-1, .cls-3 {
-        fill: #d1dede;
+      .cls-1 {
+        fill: #fdca40;
       }
 
       .cls-1, .cls-2 {
@@ -10,32 +10,13 @@
       }
 
       .cls-2 {
-        fill: #fdca40;
-      }
-
-      .cls-3 {
-        font-size: 66.667px;
-        font-family: "Lucida Grande";
+        fill: #d1dede;
       }
     </style>
   </defs>
-  <g>
-    <path class="cls-1" d="M388,272H328L357,66h60Z"/>
-    <path id="Shape_6_copy_2" data-name="Shape 6 copy 2" class="cls-1" d="M387,273H327.045L297,137h59.959Z"/>
-    <path id="Shape_6_copy_3" data-name="Shape 6 copy 3" class="cls-1" d="M227,273h59.959L317,137H257.045Z"/>
-    <path class="cls-1" d="M518,272H458V31h60V272Z"/>
-    <path id="Shape_7_copy" data-name="Shape 7 copy" class="cls-1" d="M158,272H98V31h60V272Z"/>
-    <path class="cls-1" d="M591.73,272h-60L516.27,162h60Z"/>
-    <path id="Shape_6_copy" data-name="Shape 6 copy" class="cls-1" d="M287.476,272h-60L198.524,66h60Z"/>
-  </g>
-  <path class="cls-2" d="M88,102V82H528v20H88Z"/>
-  <path class="cls-2" d="M543,152H528V31h15V152Z"/>
-  <path id="Shape_11_copy" data-name="Shape 11 copy" class="cls-2" d="M566,152H551V31h15V152Z"/>
-  <path id="Shape_11_copy_2" data-name="Shape 11 copy 2" class="cls-2" d="M588,152H573V31h15V152Z"/>
-  <path id="Shape_11_copy_3" data-name="Shape 11 copy 3" class="cls-2" d="M43,152H28V31H43V152Z"/>
-  <path id="Shape_11_copy_4" data-name="Shape 11 copy 4" class="cls-2" d="M66,152H51V31H66V152Z"/>
-  <path id="Shape_11_copy_5" data-name="Shape 11 copy 5" class="cls-2" d="M88,152H73V31H88V152Z"/>
-  <text id="LIFTS" class="cls-3" x="32" y="389.72">LIFTS</text>
-  <path class="cls-1" d="M277.827,31h60L308.173,242h-60Z"/>
-  <path id="Shape_5_copy" data-name="Shape 5 copy" class="cls-1" d="M278.173,31h60l29.654,211h-60Z"/>
+  <path id="weightplate1" class="cls-1" d="M42.539,42.32h1.539a2.5,2.5,0,0,1,2.5,2.5v56.9a2.5,2.5,0,0,1-2.5,2.5H42.539a2.5,2.5,0,0,1-2.5-2.5V44.82A2.5,2.5,0,0,1,42.539,42.32Z"/>
+  <path id="weightplate2" class="cls-1" d="M51.492,42.32h1.539a2.5,2.5,0,0,1,2.5,2.5v56.9a2.5,2.5,0,0,1-2.5,2.5H51.492a2.5,2.5,0,0,1-2.5-2.5V44.82A2.5,2.5,0,0,1,51.492,42.32Z"/>
+  <path id="weightplate3" class="cls-1" d="M60.43,42.32h1.547a2.5,2.5,0,0,1,2.5,2.5v56.9a2.5,2.5,0,0,1-2.5,2.5H60.43a2.5,2.5,0,0,1-2.5-2.5V44.82A2.5,2.5,0,0,1,60.43,42.32Z"/>
+  <path id="bar_end" data-name="bar end" class="cls-2" d="M32.219,70.008h2.914a2.5,2.5,0,0,1,2.5,2.5v1.531a2.5,2.5,0,0,1-2.5,2.5H32.219a2.5,2.5,0,0,1-2.5-2.5V72.508A2.5,2.5,0,0,1,32.219,70.008Z"/>
+  <path id="bar" class="cls-2" d="M67.768,76.538H70.6c6.638,0,28.995-2.988,28.995-25.868S77.175,24.861,70.053,24.861c-4.5,0-7.851-.534-18.655,2.207A62.764,62.764,0,0,0,32.123,36S54.7,31.466,66.991,31.466s26.123,5.306,26.123,19.2-14.353,19.41-20.445,19.41c-4.144,0-4.9-.069-4.9-0.069a0.748,0.748,0,0,0-.777.718V75.87A0.7,0.7,0,0,0,67.768,76.538Zm41.454-4.4"/>
 </svg>
