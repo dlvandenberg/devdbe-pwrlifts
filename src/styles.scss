@@ -1,3 +1,6 @@
+@import "./bootstrap-override.scss";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
 a.nav-link,
 .dropdown-item {
     cursor: pointer;

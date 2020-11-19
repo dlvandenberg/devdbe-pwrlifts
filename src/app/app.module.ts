@@ -15,6 +15,7 @@ import { CoreModule } from './core/core.module';
 import { environment } from '@app-env/environment';
 import * as fromApp from './store/app.reducer';
 import { UserEffects } from '@app-user/store/user.effects';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { UserEffects } from '@app-user/store/user.effects';
     }),
     AppRoutingModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
