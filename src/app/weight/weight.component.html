@@ -13,7 +13,7 @@
       <app-edit-weight *ngIf="weightService.editing$ | async" [weight]="weightService.editingWeight$ | async"></app-edit-weight>
         <table class="table table-hover table-responsive-md">
             <thead class="thead-dark">
-              <tr>
+              <tr class="table-secondary">
                 <th scope="col" i18n>Weight (kg)</th>
                 <th scope="col" class="hideOnSmall" i18n>Calories (kcal)</th>
                 <th scope="col" i18n>Date</th>
@@ -22,7 +22,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let weight of (weightService.weights$ | async)">
+              <tr class="text-white bg-dark-gray" *ngFor="let weight of (weightService.weights$ | async)">
                 <td>{{ weight.weight }}</td>
                 <td class="hideOnSmall" >{{ weight.calories }}</td>
                 <td>{{ weight.measuredOn | date:'dd-MM-yyyy' }}</td>

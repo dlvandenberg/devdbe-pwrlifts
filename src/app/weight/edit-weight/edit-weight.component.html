@@ -1,5 +1,5 @@
 <app-confirmation-dialog [confirmDisabled]="!weightForm.valid && weightForm.dirty"
-    title="New weight" confirmButtonText="Save weight"
+    [title]="weight.id ? 'Edit Weight' : 'New weight'" confirmButtonText="Save weight"
     (cancel)="weightService.cancelEditing()"
     (confirm)="saveWeight()"
 >
