@@ -15,10 +15,20 @@ export class WeightChartComponent implements OnInit {
   lineChartOptions: ChartOptions = {
     responsive: true,
     scales: {
+      xAxes: [
+        {
+          ticks: {
+            fontColor: 'rgb(209, 222, 222)'
+          }
+        }
+      ],
       yAxes: [
         {
           id: 'y-axis-0',
           position: 'left',
+          ticks: {
+            fontColor: 'rgba(70, 129, 137)'
+          }
         },
         {
           id: 'y-axis-1',
@@ -27,7 +37,7 @@ export class WeightChartComponent implements OnInit {
             color: 'rgba(255,255,255,0.3)',
           },
           ticks: {
-            fontColor: 'red',
+            fontColor: 'rgb(253, 202, 64)',
           }
         }
       ]
@@ -55,12 +65,12 @@ export class WeightChartComponent implements OnInit {
 
       chartData.push({
         data: calories.reverse(),
-        label: 'Calories',
+        label: 'Calories (kcal)',
         stack: 'a'
       });
       chartData.push({
         data: weights.reverse(),
-        label: 'Weight',
+        label: 'Weight (kg)',
         type: 'line',
         yAxisID: 'y-axis-1'
       });

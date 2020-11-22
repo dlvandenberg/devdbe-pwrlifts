@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+import { Color } from 'ng2-charts';
 
 @Component({
   selector: 'app-line-bar-chart',
@@ -28,6 +29,21 @@ export class LineBarChartComponent implements OnInit {
 
   @Output()
   public clicked = new EventEmitter();
+
+  public barChartColors: Color[] = [
+    {
+      backgroundColor: 'rgba(70, 129, 137, 0.7)',
+      hoverBackgroundColor: 'rgba(70, 129, 137, 0.8)',
+      borderColor: 'rgba(70, 129, 137)',
+      borderWidth: 1,
+    },
+    {
+      backgroundColor: 'rgba(253, 202, 64, 0.7)',
+      hoverBackgroundColor: 'rgba(253, 202, 64, 0.8)',
+      borderColor: 'rgb(253, 202, 64)',
+      borderWidth: 1
+    }
+  ];
 
   constructor() { }
 
