@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'weight', loadChildren: () => import('./weight/weight.module').then(m => m.WeightModule) },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: 'bodyfat', loadChildren: () => import('./bodyfat/bodyfat.module').then(m => m.BodyfatModule) },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];

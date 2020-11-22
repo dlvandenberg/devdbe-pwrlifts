@@ -29,7 +29,7 @@
                 <td class="hideOnSmall">{{ weight.partOfDayMeasured }}</td>
                 <td class="actions w-10">
                     <span class="oi oi-pencil pointer" (click)="weightService.startEditingExisting(weight)"></span>
-                    <span class="oi oi-trash pointer" (click)="weightService.delete(weight.id)"></span>
+                    <span class="oi oi-trash pointer danger" (click)="weightService.delete(weight.id)"></span>
                 </td>
               </tr>
             </tbody>

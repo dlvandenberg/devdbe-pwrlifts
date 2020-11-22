@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { TimeOfDay } from '../model/time-of-day.enum';
+import { TimeOfDay } from '../../shared/model/time-of-day.enum';
 import { Weight } from '../model/weight.model';
 
 export const startEditing = createAction('[Weight] Start Editing');

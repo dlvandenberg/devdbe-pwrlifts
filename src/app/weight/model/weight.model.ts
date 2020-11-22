@@ -1,4 +1,4 @@
-import { TimeOfDay } from './time-of-day.enum';
+import { TimeOfDay } from '../../shared/model/time-of-day.enum';
 
 export interface Weight {
     id: string;

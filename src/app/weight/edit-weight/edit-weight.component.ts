@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { dateValidator } from '@app-validators/date-validator.directive';
 import * as moment from 'moment';
-import { TimeOfDay } from '../model/time-of-day.enum';
+import { TimeOfDay } from '../../shared/model/time-of-day.enum';
 import { Weight } from '../model/weight.model';
 import { WeightService } from '../services/weight.service';
 

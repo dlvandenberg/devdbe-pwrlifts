@@ -30,7 +30,25 @@ thead tr:hover > th {
     background-color: lighten($dark, 5) !important;
 }
 
-.oi:hover,
+.oi:not(.danger):hover,
 .icon-hover:hover {
     color: $primary;
+}
+
+.oi.danger:hover {
+    color: $danger;
+}
+
+.actions > span {
+    padding-right: 5px;
+}
+
+.actions > span:last-child {
+    padding: 0;
+}
+
+@media (max-width: 576px) {
+    .hideOnSmall {
+        display:none;
+    }
 }
