@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as fromWeightActions from './weight.actions';
 import * as fromAuth from '@app-auth/store/auth.reducer';
-import { exhaustMap, map, withLatestFrom } from 'rxjs/operators';
+import { exhaustMap, map, tap, withLatestFrom } from 'rxjs/operators';
 import { environment } from '@app-env/environment';
 import { Weight } from '../model/weight.model';
 import { Store } from '@ngrx/store';
@@ -71,6 +71,7 @@ export class WeightEffects {
                         .set('endAt', new Date().getTime().toString())
                 })
                 .pipe(
+                    tap(weights => console.log(weights === null)),
                     map(weights => {
                         const weightList: Weight[] = [];
                         if (weights === null) {
