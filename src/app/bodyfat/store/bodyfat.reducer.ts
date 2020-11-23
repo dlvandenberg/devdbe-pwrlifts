@@ -8,11 +8,13 @@ export const selectState = createFeatureSelector<State>(featureKey);
 export interface State {
     bodyfats: Bodyfat[];
     editing: boolean;
+    editingBodyfat: Bodyfat;
 }
 
 const initialState: State = {
     bodyfats: [],
-    editing: false
+    editing: false,
+    editingBodyfat: null
 };
 
 const bodyfatReducer = createReducer(
@@ -22,12 +24,16 @@ const bodyfatReducer = createReducer(
         (state) => ({ ...state, editing: true })
     ),
     on(
+        fromBodyfatActions.startEditingExisting,
+        (state, { bodyfat }) => ({ ...state, editing: true, editingBodyfat: bodyfat })
+    ),
+    on(
         fromBodyfatActions.cancelEditing,
-        (state) => ({ ...state, editing: false })
+        (state) => ({ ...state, editing: false, editingBodyfat: null })
     ),
     on(
         fromBodyfatActions.storeBodyfats,
-        (state, { bodyfats }) => ({ ...state, editing: false, bodyfats: [...bodyfats ]})
+        (state, { bodyfats }) => ({ ...state, editing: false, editingBodyfat: null, bodyfats: [...bodyfats ]})
     )
 );
 

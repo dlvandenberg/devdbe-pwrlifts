@@ -27,6 +27,22 @@ export class BodyfatEffects {
         )
     );
 
+    updateBodyfat$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(fromBodyfatActions.updateBodyfat),
+            withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
+            exhaustMap(([ action, authUserId ]) =>
+                this.http.patch(environment.firebase.databaseUrl + 'bodyfats/' + authUserId + '/' + action.id + '.json', {
+                    bodyfat: action.bodyfat,
+                    measuredOn: action.measuredOn.getTime(),
+                    partOfDayMeasured: action.partOfDayMeasured
+                }).pipe(
+                    map(() => fromBodyfatActions.fetchBodyfats())
+                )
+            )
+        )
+    );
+
     fetchBodyfats$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromBodyfatActions.fetchBodyfats),

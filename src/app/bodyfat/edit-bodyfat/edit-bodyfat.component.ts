@@ -66,11 +66,11 @@ export class EditBodyfatComponent implements OnInit {
 
   public saveBodyfat(): void {
     if (this.bodyfat.id) {
-      // this.bodyfatService.update({
-      //   id: this.bodyfat.id,
-      //   ...this.bodyfatForm.value,
-      //   measuredOn: moment(this.bodyfatForm.value.measuredOn, 'YYYY-MM-DD').toDate()
-      // });
+      this.bodyfatService.update({
+        id: this.bodyfat.id,
+        ...this.bodyfatForm.value,
+        measuredOn: moment(this.bodyfatForm.value.measuredOn, 'YYYY-MM-DD').toDate()
+      });
     } else {
       this.bodyfatService.create({
         ...this.bodyfatForm.value,

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Bodyfat } from '@app-bodyfat/model/bodyfat.model';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import * as fromBodyfat from '../store/bodyfat.reducer';
 import * as fromBodyfatActions from '../store/bodyfat.actions';
-import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -25,8 +25,18 @@ export class BodyfatService {
         );
     }
 
+    get editingBodyfat$(): Observable<Bodyfat> {
+        return this.store.select(fromBodyfat.selectState).pipe(
+            map(state => state.editingBodyfat)
+        );
+    }
+
     public startEditing(): void {
         this.store.dispatch(fromBodyfatActions.startEditing());
+    }
+
+    public startEditingExisting(bodyfat: Bodyfat): void {
+        this.store.dispatch(fromBodyfatActions.startEditingExisting({ bodyfat }));
     }
 
     public cancelEditing(): void {
@@ -35,6 +45,10 @@ export class BodyfatService {
 
     public create(bodyfat: Bodyfat): void {
         this.store.dispatch(fromBodyfatActions.createBodyfat(bodyfat));
+    }
+
+    public update(bodyfat: Bodyfat): void {
+        this.store.dispatch(fromBodyfatActions.updateBodyfat(bodyfat));
     }
 
     public fetchBodyfats(): void {
