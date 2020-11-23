@@ -1,4 +1,19 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  BAR_CHART_BACKGROUND_COLOR,
+  BAR_CHART_BORDER_COLOR,
+  BAR_CHART_BORDER_WIDTH,
+  BAR_CHART_HOVER_BACKGROUND_COLOR,
+  BAR_CHART_TICKS_COLOR,
+  BAR_CHART_Y_AXIS_ID,
+  CHART_GRID_LINES_COLOR,
+  CHART_X_AXIS_TICKS_COLOR,
+  LINE_CHART_BACKGROUND_COLOR,
+  LINE_CHART_BORDER_COLOR,
+  LINE_CHART_BORDER_WIDTH,
+  LINE_CHART_HOVER_BACKGROUND_COLOR,
+  LINE_CHART_TICKS_COLOR,
+  LINE_CHART_Y_AXIS_ID } from '@app-constants/charts';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Color } from 'ng2-charts';
 
@@ -11,7 +26,35 @@ export class LineBarChartComponent implements OnInit {
 
   @Input()
   public barChartOptions: ChartOptions = {
-    responsive: true
+    responsive: true,
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            fontColor: CHART_X_AXIS_TICKS_COLOR
+          }
+        }
+      ],
+      yAxes: [
+        {
+          id: BAR_CHART_Y_AXIS_ID,
+          position: 'left',
+          ticks: {
+            fontColor: BAR_CHART_TICKS_COLOR
+          }
+        },
+        {
+          id: LINE_CHART_Y_AXIS_ID,
+          position: 'right',
+          gridLines: {
+            color: CHART_GRID_LINES_COLOR
+          },
+          ticks: {
+            fontColor: LINE_CHART_TICKS_COLOR
+          }
+        }
+      ]
+    }
   };
   public barChartType: ChartType = 'bar';
 
@@ -32,16 +75,16 @@ export class LineBarChartComponent implements OnInit {
 
   public barChartColors: Color[] = [
     {
-      backgroundColor: 'rgba(70, 129, 137, 0.7)',
-      hoverBackgroundColor: 'rgba(70, 129, 137, 0.8)',
-      borderColor: 'rgba(70, 129, 137)',
-      borderWidth: 1,
+      backgroundColor: BAR_CHART_BACKGROUND_COLOR,
+      hoverBackgroundColor: BAR_CHART_HOVER_BACKGROUND_COLOR,
+      borderColor: BAR_CHART_BORDER_COLOR,
+      borderWidth: BAR_CHART_BORDER_WIDTH,
     },
     {
-      backgroundColor: 'rgba(253, 202, 64, 0.7)',
-      hoverBackgroundColor: 'rgba(253, 202, 64, 0.8)',
-      borderColor: 'rgb(253, 202, 64)',
-      borderWidth: 1
+      backgroundColor: LINE_CHART_BACKGROUND_COLOR,
+      hoverBackgroundColor: LINE_CHART_HOVER_BACKGROUND_COLOR,
+      borderColor: LINE_CHART_BORDER_COLOR,
+      borderWidth: LINE_CHART_BORDER_WIDTH
     }
   ];
 

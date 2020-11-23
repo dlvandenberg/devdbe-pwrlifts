@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { BAR_CHART_Y_AXIS_ID, LINE_CHART_Y_AXIS_ID } from '@app-constants/charts';
 import { WeightService } from '@app-weight/services/weight.service';
-import { ChartDataSets, ChartOptions } from 'chart.js';
+import { ChartDataSets } from 'chart.js';
 
 @Component({
   selector: 'app-weight-chart',
@@ -12,37 +13,6 @@ import { ChartDataSets, ChartOptions } from 'chart.js';
 export class WeightChartComponent implements OnInit {
   weightChartData: ChartDataSets[] = [];
   weightChartLabels: string[] = [];
-  lineChartOptions: ChartOptions = {
-    responsive: true,
-    scales: {
-      xAxes: [
-        {
-          ticks: {
-            fontColor: 'rgb(209, 222, 222)'
-          }
-        }
-      ],
-      yAxes: [
-        {
-          id: 'y-axis-0',
-          position: 'left',
-          ticks: {
-            fontColor: 'rgba(70, 129, 137)'
-          }
-        },
-        {
-          id: 'y-axis-1',
-          position: 'right',
-          gridLines: {
-            color: 'rgba(255,255,255,0.3)',
-          },
-          ticks: {
-            fontColor: 'rgb(253, 202, 64)',
-          }
-        }
-      ]
-    }
-  };
 
   constructor(
     private readonly weightService: WeightService,
@@ -66,13 +36,14 @@ export class WeightChartComponent implements OnInit {
       chartData.push({
         data: calories.reverse(),
         label: 'Calories (kcal)',
-        stack: 'a'
+        stack: 'a',
+        yAxisID: BAR_CHART_Y_AXIS_ID
       });
       chartData.push({
         data: weights.reverse(),
         label: 'Weight (kg)',
         type: 'line',
-        yAxisID: 'y-axis-1'
+        yAxisID: LINE_CHART_Y_AXIS_ID
       });
 
       this.weightChartData = chartData;

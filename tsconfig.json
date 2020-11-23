@@ -23,7 +23,8 @@
       "@app-auth/*": [ "src/app/auth/*" ],
       "@app-user/*": [ "src/app/user/*" ],
       "@app-weight/*": [ "src/app/weight/*" ],
-      "@app-bodyfat/*": [ "src/app/bodyfat/*" ]
+      "@app-bodyfat/*": [ "src/app/bodyfat/*" ],
+      "@app-constants/*": [ "src/app/shared/constants/*" ]
     }
   }
 }
