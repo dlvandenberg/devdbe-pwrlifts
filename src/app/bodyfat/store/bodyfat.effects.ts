@@ -43,6 +43,19 @@ export class BodyfatEffects {
         )
     );
 
+    deleteBodyfat$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(fromBodyfatActions.deleteBodyfat),
+            withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
+            exhaustMap(([ action, authUserId ]) =>
+                this.http.delete(environment.firebase.databaseUrl + 'bodyfats/' + authUserId + '/' + action.id + '.json')
+                .pipe(
+                    map(() => fromBodyfatActions.fetchBodyfats())
+                )
+            )
+        )
+    );
+
     fetchBodyfats$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromBodyfatActions.fetchBodyfats),

@@ -47,6 +47,10 @@ export class BodyfatService {
         this.store.dispatch(fromBodyfatActions.createBodyfat(bodyfat));
     }
 
+    public delete(id: string): void {
+        this.store.dispatch(fromBodyfatActions.deleteBodyfat({ id }));
+    }
+
     public update(bodyfat: Bodyfat): void {
         this.store.dispatch(fromBodyfatActions.updateBodyfat(bodyfat));
     }

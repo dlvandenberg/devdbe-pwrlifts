@@ -33,6 +33,11 @@ export const updateBodyfat = createAction(
     }>()
 );
 
+export const deleteBodyfat = createAction(
+    '[Bodyfat] Delete',
+    props<{ id: string }>()
+);
+
 export const fetchBodyfats = createAction('[Bodyfat] Fetch bodyfats');
 
 export const storeBodyfats = createAction(
