@@ -11,11 +11,13 @@ import { BodyfatEffects } from './store/bodyfat.effects';
 import { EditBodyfatComponent } from './edit-bodyfat/edit-bodyfat.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BodyfatChartComponent } from './bodyfat-chart/bodyfat-chart.component';
 
 @NgModule({
   declarations: [
     BodyfatComponent,
-    EditBodyfatComponent
+    EditBodyfatComponent,
+    BodyfatChartComponent
   ],
   imports: [
     CommonModule,

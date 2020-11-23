@@ -9,6 +9,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ChartsModule } from 'ng2-charts';
 import { LineBarChartComponent } from './charts/line-bar-chart/line-bar-chart.component';
+import { LineChartComponent } from './charts/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LineBarChartComponent } from './charts/line-bar-chart/line-bar-chart.co
     ErrorComponent,
     LoadingSpinnerComponent,
     ConfirmationDialogComponent,
-    LineBarChartComponent
+    LineBarChartComponent,
+    LineChartComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { LineBarChartComponent } from './charts/line-bar-chart/line-bar-chart.co
     ErrorComponent,
     LoadingSpinnerComponent,
     ConfirmationDialogComponent,
-    LineBarChartComponent
+    LineBarChartComponent,
+    LineChartComponent
   ]
 })
 export class SharedModule { }

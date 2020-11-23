@@ -1,8 +1,13 @@
 <div class="row">
+    <div class="col-xs-12 col-md-8 offset-md-2 pb-2">
+        <app-bodyfat-chart></app-bodyfat-chart>
+    </div>
+</div>
+<div class="row">
     <div class="col-xs-12 col-md-8 offset-md-2 text-right pb-2">
       <button class="btn btn-primary" i18n (click)="bodyfatService.startEditing()">New bodyfat</button>
     </div>
-  </div>
+</div>
 <div class="row">
     <div class="col-xs-12 col-md-8 offset-md-2">
         <app-edit-bodyfat *ngIf="bodyfatService.editing$ | async" [bodyfat]="bodyfatService.editingBodyfat$ | async"></app-edit-bodyfat>
