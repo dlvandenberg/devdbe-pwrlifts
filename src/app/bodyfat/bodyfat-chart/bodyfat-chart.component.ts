@@ -26,7 +26,7 @@ export class BodyfatChartComponent implements OnInit {
       const chartData: ChartDataSets[] = [];
       const chartLabels: string[] = [];
       const percentages: number[] = [];
-      bodyfatList.forEach((measurement) => {
+      bodyfatList.forEach(measurement => {
         chartLabels.push(
           this.datePipe.transform(measurement.measuredOn, 'dd-MM-yyyy')
         );

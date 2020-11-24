@@ -1,8 +1,8 @@
-<!-- <div class="row">
+<div class="row">
     <div class="col-xs-12 col-md-8 offset-md-2 pb-2">
-        <app-weight-chart></app-weight-chart>
+        <app-one-rep-max-chart [exercise]="exercise"></app-one-rep-max-chart>
     </div>
-</div> -->
+</div>
 <div class="row">
     <div class="col-xs-12 col-md-8 offset-md-2 text-right pb-2">
         <button class="btn btn-primary" i18n (click)="oneRepMaxService.startEditing()">New {{ exercise }} record</button>
@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 <tr class="text-white bg-dark-gray" *ngFor="let oneRepMax of (oneRepMaxService.oneRepMaxes$(exercise) | async)">
-                    <td>{{ oneRepMax.oneRepMax }}</td>
+                    <td>{{ oneRepMax.oneRepMax | quarterDecimal }}</td>
                     <td class="hideOnSmall">{{ oneRepMax.weight }}</td>
                     <td class="hideOnSmall">{{ oneRepMax.reps }}</td>
                     <td class="hideOnSmall">{{ oneRepMax.calculated ? 'Yes' : 'No' }}</td>

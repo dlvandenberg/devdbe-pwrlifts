@@ -10,6 +10,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { ChartsModule } from 'ng2-charts';
 import { LineBarChartComponent } from './charts/line-bar-chart/line-bar-chart.component';
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
+import { QuarterDecimalPipe } from './quarter-decimal.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LineChartComponent } from './charts/line-chart/line-chart.component';
     LoadingSpinnerComponent,
     ConfirmationDialogComponent,
     LineBarChartComponent,
-    LineChartComponent
+    LineChartComponent,
+    QuarterDecimalPipe
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { LineChartComponent } from './charts/line-chart/line-chart.component';
     LoadingSpinnerComponent,
     ConfirmationDialogComponent,
     LineBarChartComponent,
-    LineChartComponent
+    LineChartComponent,
+    QuarterDecimalPipe
   ]
 })
 export class SharedModule { }

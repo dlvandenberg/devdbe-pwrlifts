@@ -10,9 +10,14 @@ import { StoreModule } from '@ngrx/store';
 import * as fromOneRepMax from './store/one-rep-max.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { OneRepMaxEffects } from './store/one-rep-max.effects';
+import { OneRepMaxChartComponent } from './one-rep-max-chart/one-rep-max-chart.component';
 
 @NgModule({
-  declarations: [OneRepMaxComponent, EditOneRepMaxComponent],
+  declarations: [
+    OneRepMaxComponent,
+    EditOneRepMaxComponent,
+    OneRepMaxChartComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
