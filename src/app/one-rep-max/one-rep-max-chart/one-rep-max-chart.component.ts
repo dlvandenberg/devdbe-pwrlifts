@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LINE_CHART_Y_AXIS_ID } from '@app-constants/charts';
 import { ChartDataSets } from 'chart.js';
+import { map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { Exercise } from '../model/exercise.enum';
 import { OneRepMaxService } from '../services/one-rep-max.service';
 
@@ -15,16 +17,17 @@ export class OneRepMaxChartComponent implements OnInit {
   chartData: ChartDataSets[] = [];
   chartLabels: string[] = [];
 
-  @Input()
-  public exercise: Exercise;
-
   constructor(
+    private readonly route: ActivatedRoute,
     private readonly oneRepMaxService: OneRepMaxService,
     private readonly datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
-    this.oneRepMaxService.oneRepMaxes$(this.exercise).subscribe(oneRepMaxList => {
+    this.route.params.pipe(
+      map(params => Exercise[params.exercise]),
+      switchMap(exercise => this.oneRepMaxService.oneRepMaxes$(exercise))
+    ).subscribe((oneRepMaxList) => {
       const data: ChartDataSets[] = [];
       const labels: string[] = [];
       const records: number[] = [];
