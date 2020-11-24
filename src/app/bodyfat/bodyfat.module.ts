@@ -10,7 +10,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { BodyfatEffects } from './store/bodyfat.effects';
 import { EditBodyfatComponent } from './edit-bodyfat/edit-bodyfat.component';
 import { SharedModule } from '../shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BodyfatChartComponent } from './bodyfat-chart/bodyfat-chart.component';
 
 @NgModule({
@@ -22,7 +21,6 @@ import { BodyfatChartComponent } from './bodyfat-chart/bodyfat-chart.component';
   imports: [
     CommonModule,
     SharedModule,
-    ReactiveFormsModule,
     BodyfatRoutingModule,
     StoreModule.forFeature(fromBodyfat.featureKey, fromBodyfat.bodyfatReducerFn),
     EffectsModule.forFeature([ BodyfatEffects ])

@@ -5,7 +5,6 @@ import { WeightRoutingModule } from './weight-routing.module';
 import { WeightComponent } from './weight.component';
 import { EditWeightComponent } from './edit-weight/edit-weight.component';
 import { SharedModule } from '../shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import * as fromWeight from './store/weight.reducer';
 import { EffectsModule } from '@ngrx/effects';
@@ -18,7 +17,6 @@ import { WeightChartComponent } from './weight-chart/weight-chart.component';
     CommonModule,
     WeightRoutingModule,
     SharedModule,
-    ReactiveFormsModule,
     StoreModule.forFeature(fromWeight.featureKey, fromWeight.weightReducerFn),
     EffectsModule.forFeature([ WeightEffects ])
   ]

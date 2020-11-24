@@ -22,9 +22,9 @@
             <div class="dropdown" *ngIf="isAuthenticated">
                 <a class="nav-item nav-link dropdown-toggle" appDropdown #rmDropdown="appDropdown" role="button">1RM</a>
                 <div class="dropdown-menu bg-dark-gray" [class.show]="rmDropdown.isOpen">
-                    <a class="dropdown-item" i18n>Squat</a>
-                    <a class="dropdown-item" i18n>Bench Press</a>
-                    <a class="dropdown-item" i18n>Deadlift</a>
+                    <a class="dropdown-item" i18n routerLink="1rm/squat">Squat</a>
+                    <a class="dropdown-item" i18n routerLink="1rm/benchpress">Bench Press</a>
+                    <a class="dropdown-item" i18n routerLink="1rm/deadlift">Deadlift</a>
                 </div>
             </div>
         </div>

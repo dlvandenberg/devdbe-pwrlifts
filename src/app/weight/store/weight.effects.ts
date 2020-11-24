@@ -71,7 +71,6 @@ export class WeightEffects {
                         .set('endAt', new Date().getTime().toString())
                 })
                 .pipe(
-                    tap(weights => console.log(weights === null)),
                     map(weights => {
                         const weightList: Weight[] = [];
                         if (weights === null) {

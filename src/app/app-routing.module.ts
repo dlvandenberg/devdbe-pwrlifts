@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'bodyfat', loadChildren: () => import('./bodyfat/bodyfat.module').then(m => m.BodyfatModule) },
+  { path: '1rm', loadChildren: () => import('./one-rep-max/one-rep-max.module').then(m => m.OneRepMaxModule) },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];

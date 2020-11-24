@@ -1,0 +1,68 @@
+<app-confirmation-dialog [confirmDisabled]="!oneRepMaxForm.valid && oneRepMaxForm.dirty"
+    [title]="oneRepMax.id ? 'Edit ' + exercise + ' record' : 'New ' + exercise + ' record'"
+    confirmButtonText="Save record"
+    (cancel)="oneRepMaxService.cancelEditing()"
+    (confirm)="saveOneRepMax()"
+>
+    <form [formGroup]="oneRepMaxForm" (keyup.enter)="saveOneRepMax()">
+        <div class="form-group">
+            <label for="inputWeight" i18n>Weight (kg)</label>
+            <input type="number" 
+                class="form-control" 
+                id="inputWeight"
+                placeholder="Weight in kilograms"
+                formControlName="weight"
+                [class.is-invalid]="weightInvalid"
+            >
+            <div class="invalid-feedback" *ngIf="weightInvalid" i18n>
+                Please enter a valid weight
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputReps" i18n>Reps</label>
+            <input type="number" 
+                class="form-control"
+                id="inputReps"
+                placeholder="Repetitions"
+                formControlName="reps"
+                [class.is-invalid]="repsInvalid"
+            >
+            <div class="invalid-feedback" *ngIf="repsInvalid" i18n>
+                Please enter a valid amount of repetitions (>0)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputDate" i18n>Date performed</label>
+            <input type="date" 
+                class="form-control" 
+                id="inputDate"
+                formControlName="date"
+                [class.is-invalid]="dateInvalid"
+            >
+            <div class="invalid-feedback" *ngIf="dateInvalid" i18n>
+                Please enter a valid date
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputTime" i18n>Part of day</label>
+            <select class="custom-select" formControlName="time">
+                <option [selected]="time === timeOfDayEnum.MORNING" [value]="timeOfDayEnum.MORNING" i18n>Morning</option>
+                <option [selected]="time === timeOfDayEnum.AFTERNOON" [value]="timeOfDayEnum.AFTERNOON" i18n>Afternoon</option>
+                <option [selected]="time === timeOfDayEnum.EVENING" [value]="timeOfDayEnum.EVENING" i18n>Evening</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="inputRpe" i18n>RPE (0-10)</label>
+            <input type="number" 
+                class="form-control"
+                id="inputRpe"
+                placeholder="Rate of Perceived Exhaustion"
+                formControlName="rpe"
+                [class.is-invalid]="rpeInvalid"
+            >
+            <div class="invalid-feedback" *ngIf="rpeInvalid" i18n>
+                Please enter a valid value for RPE (0-10)
+            </div>
+        </div>
+    </form>
+</app-confirmation-dialog>
