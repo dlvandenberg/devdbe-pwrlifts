@@ -83,7 +83,14 @@ export class EditOneRepMaxComponent implements OnInit {
       oneRepMax = weight;
     }
     if (this.oneRepMax.id) {
-      //
+      this.oneRepMaxService.update({
+        ...this.oneRepMaxForm.value,
+        id: this.oneRepMax.id,
+        exercise: this.exercise,
+        calculated,
+        oneRepMax,
+        date: moment(this.oneRepMaxForm.value.date, 'YYYY-MM-DD').toDate()
+      });
     } else {
         this.oneRepMaxService.create({
           ...this.oneRepMaxForm.value,

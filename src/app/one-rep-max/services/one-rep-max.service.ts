@@ -37,15 +37,18 @@ export class OneRepMaxService {
 
     public create(oneRepMax: OneRepMax): void {
         this.store.dispatch(fromOneRepMaxActions.createOneRepMax({
-            exercise: oneRepMax.exercise,
-            weight: oneRepMax.weight,
-            reps: oneRepMax.reps,
-            oneRepMax: oneRepMax.oneRepMax,
-            calculated: oneRepMax.calculated,
-            date: oneRepMax.date,
-            time: oneRepMax.time,
-            rpe: oneRepMax.rpe
+            ...oneRepMax
         }));
+    }
+
+    public update(oneRepMax: OneRepMax): void {
+        this.store.dispatch(fromOneRepMaxActions.updateOneRepMax({
+            ...oneRepMax
+        }));
+    }
+
+    public delete(id: string, exercise: Exercise): void {
+        this.store.dispatch(fromOneRepMaxActions.deleteOneRepMax({ id, exercise }));
     }
 
     public startEditing(): void {

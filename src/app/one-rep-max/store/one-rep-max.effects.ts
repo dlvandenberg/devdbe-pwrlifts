@@ -31,6 +31,39 @@ export class OneRepMaxEffects {
         )
     );
 
+    updateOneRepMax$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(fromOneRepMaxActions.updateOneRepMax),
+            withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
+            exhaustMap(([ action, authUserId ]) =>
+                this.http.patch(environment.firebase.databaseUrl + action.exercise + '/' + authUserId + '/' + action.id + '.json', {
+                    weight: action.weight,
+                    reps: action.reps,
+                    oneRepMax: action.oneRepMax,
+                    calculated: action.calculated,
+                    date: action.date.getTime(),
+                    time: action.time,
+                    rpe: action.rpe
+                }).pipe(
+                    map(() => fromOneRepMaxActions.fetchOneRepMaxes({ exercise: action.exercise }))
+                )
+            )
+        )
+    );
+
+    deleteOneRepMax$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(fromOneRepMaxActions.deleteOneRepMax),
+            withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
+            exhaustMap(([ action, authUserId ]) =>
+                this.http.delete(environment.firebase.databaseUrl + action.exercise + '/' + authUserId + '/' + action.id + '.json')
+                .pipe(
+                    map(() => fromOneRepMaxActions.fetchOneRepMaxes({ exercise: action.exercise }))
+                )
+            )
+        )
+    );
+
     fetchOneRepMaxes$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromOneRepMaxActions.fetchOneRepMaxes),

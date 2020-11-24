@@ -17,6 +17,29 @@ export const createOneRepMax = createAction(
     }>()
 );
 
+export const updateOneRepMax = createAction(
+    '[OneRepMax] Update',
+    props<{
+        id: string,
+        exercise: Exercise,
+        weight: number,
+        reps: number,
+        oneRepMax: number,
+        calculated: boolean,
+        date: Date,
+        time: TimeOfDay,
+        rpe: number
+    }>()
+);
+
+export const deleteOneRepMax = createAction(
+    '[OneRepMax] Delete',
+    props<{
+        id: string,
+        exercise: Exercise
+    }>()
+);
+
 export const fetchOneRepMaxes = createAction(
     '[OneRepMax] Fetch',
     props<{ exercise: Exercise }>()

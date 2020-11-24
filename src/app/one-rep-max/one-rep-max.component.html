@@ -39,7 +39,7 @@
                     <td class="hideOnSmall">{{ oneRepMax.rpe }}</td>
                     <td class="actions w-10">
                         <span class="oi oi-pencil pointer" (click)="oneRepMaxService.startEditingExisting(oneRepMax)"></span>
-                        <span class="oi oi-trash pointer danger"></span>
+                        <span class="oi oi-trash pointer danger" (click)="oneRepMaxService.delete(oneRepMax.id, exercise)"></span>
                     </td>
                 </tr>
             </tbody>
