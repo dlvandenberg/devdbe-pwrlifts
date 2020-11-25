@@ -14,8 +14,7 @@ import { Color } from 'ng2-charts';
 
 @Component({
   selector: 'app-line-chart',
-  templateUrl: './line-chart.component.html',
-  styleUrls: ['./line-chart.component.scss']
+  templateUrl: './line-chart.component.html'
 })
 export class LineChartComponent {
 

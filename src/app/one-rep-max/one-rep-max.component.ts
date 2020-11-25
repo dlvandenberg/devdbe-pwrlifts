@@ -5,8 +5,7 @@ import { OneRepMaxService } from './services/one-rep-max.service';
 
 @Component({
   selector: 'app-one-rep-max',
-  templateUrl: './one-rep-max.component.html',
-  styleUrls: ['./one-rep-max.component.scss']
+  templateUrl: './one-rep-max.component.html'
 })
 export class OneRepMaxComponent implements OnInit {
   public exercise: Exercise;

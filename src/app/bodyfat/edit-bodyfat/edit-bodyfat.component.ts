@@ -10,7 +10,6 @@ import { TimeOfDay } from '../../shared/model/time-of-day.enum';
 @Component({
   selector: 'app-edit-bodyfat',
   templateUrl: './edit-bodyfat.component.html',
-  styleUrls: ['./edit-bodyfat.component.scss'],
   providers: [DatePipe]
 })
 export class EditBodyfatComponent implements OnInit {

@@ -3,24 +3,26 @@ import { Component, OnInit } from '@angular/core';
 import { BAR_CHART_Y_AXIS_ID, LINE_CHART_Y_AXIS_ID } from '@app-constants/charts';
 import { WeightService } from '@app-weight/services/weight.service';
 import { ChartDataSets } from 'chart.js';
+import { skip, takeUntil } from 'rxjs/operators';
+import { DestroyObservable } from 'src/app/shared/destroy.observable';
 
 @Component({
   selector: 'app-weight-chart',
   templateUrl: './weight-chart.component.html',
-  styleUrls: ['./weight-chart.component.scss'],
-  providers: [ DatePipe ]
+  providers: [ DatePipe, DestroyObservable ]
 })
 export class WeightChartComponent implements OnInit {
   weightChartData: ChartDataSets[] = [];
   weightChartLabels: string[] = [];
 
   constructor(
+    private readonly destroy$: DestroyObservable,
     private readonly weightService: WeightService,
     private readonly datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
-    this.weightService.weights$.subscribe(weightList => {
+    this.weightService.weights$.pipe(takeUntil(this.destroy$), skip(1)).subscribe(weightList => {
       const chartData: ChartDataSets[] = [];
       const chartLabels: string[] = [];
       const weights: number[] = [];

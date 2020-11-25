@@ -1,23 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
+import { DestroyObservable } from '../shared/destroy.observable';
 import { User } from './model/user.model';
 import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  providers: [ DestroyObservable ]
 })
 export class UserComponent implements OnInit {
 
   public user: User;
 
-  constructor(public readonly userService: UserService) { }
+  constructor(
+    private readonly destroy$: DestroyObservable,
+    public readonly userService: UserService
+  ) { }
 
   ngOnInit(): void {
-    this.userService.user$.subscribe(user => this.user = user);
+    this.userService.user$.pipe(takeUntil(this.destroy$)).subscribe(user => this.user = user);
   }
 
   public updateUser(form: NgForm): void {

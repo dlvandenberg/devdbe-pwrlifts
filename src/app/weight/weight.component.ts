@@ -3,8 +3,7 @@ import { WeightService } from './services/weight.service';
 
 @Component({
   selector: 'app-weight',
-  templateUrl: './weight.component.html',
-  styleUrls: ['./weight.component.scss']
+  templateUrl: './weight.component.html'
 })
 export class WeightComponent implements OnInit {
   constructor(public readonly weightService: WeightService) { }

@@ -10,7 +10,6 @@ import { WeightService } from '../services/weight.service';
 @Component({
   selector: 'app-edit-weight',
   templateUrl: './edit-weight.component.html',
-  styleUrls: ['./edit-weight.component.scss'],
   providers: [DatePipe]
 })
 export class EditWeightComponent implements OnInit {

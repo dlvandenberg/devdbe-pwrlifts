@@ -3,7 +3,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { dateValidator } from '@app-validators/date-validator.directive';
 import * as moment from 'moment';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { TimeOfDay } from 'src/app/shared/model/time-of-day.enum';
 import { Exercise } from '../model/exercise.enum';
 import { OneRepMax } from '../model/one-rep-max.model';
@@ -12,7 +11,6 @@ import { OneRepMaxService } from '../services/one-rep-max.service';
 @Component({
   selector: 'app-edit-one-rep-max',
   templateUrl: './edit-one-rep-max.component.html',
-  styleUrls: ['./edit-one-rep-max.component.scss'],
   providers: [DatePipe]
 })
 export class EditOneRepMaxComponent implements OnInit {

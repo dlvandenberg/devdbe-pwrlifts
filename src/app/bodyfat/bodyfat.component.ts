@@ -3,11 +3,9 @@ import { BodyfatService } from './services/bodyfat.service';
 
 @Component({
   selector: 'app-bodyfat',
-  templateUrl: './bodyfat.component.html',
-  styleUrls: ['./bodyfat.component.scss']
+  templateUrl: './bodyfat.component.html'
 })
 export class BodyfatComponent implements OnInit {
-
 
   constructor(public readonly bodyfatService: BodyfatService) { }
 
