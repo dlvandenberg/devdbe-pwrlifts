@@ -3,8 +3,8 @@ import { IUser } from '@app-user/model/user.model';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import * as fromUserActions from '../store/user.actions';
-import * as fromUser from '../store/user.reducer';
+import * as fromUserActions from '@app-user/store/user.actions';
+import * as fromUser from '@app-user/store/user.reducer';
 
 @Injectable({
     providedIn: 'root'

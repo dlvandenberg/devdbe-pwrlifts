@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { WeightRoutingModule } from './weight-routing.module';
 import { WeightComponent } from './weight.component';
 import { EditWeightComponent } from './edit-weight/edit-weight.component';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '@app-shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import * as fromWeight from './store/weight.reducer';
 import { EffectsModule } from '@ngrx/effects';

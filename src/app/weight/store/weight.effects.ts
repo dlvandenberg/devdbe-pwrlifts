@@ -4,9 +4,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as fromWeightActions from './weight.actions';
 import * as fromAuth from '@app-auth/store/auth.reducer';
-import { exhaustMap, map, tap, withLatestFrom } from 'rxjs/operators';
+import { exhaustMap, map, withLatestFrom } from 'rxjs/operators';
 import { environment } from '@app-env/environment';
-import { Weight } from '../model/weight.model';
+import { Weight } from '@app-weight/model/weight.model';
 import { Store } from '@ngrx/store';
 
 @Injectable()

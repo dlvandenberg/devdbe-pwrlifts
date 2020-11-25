@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Weight } from '../model/weight.model';
-import * as fromWeightActions from '../store/weight.actions';
-import * as fromWeight from '../store/weight.reducer';
+import { Weight } from '@app-weight/model/weight.model';
+import * as fromWeightActions from '@app-weight/store/weight.actions';
+import * as fromWeight from '@app-weight/store/weight.reducer';
 
 @Injectable({
   providedIn: 'root'

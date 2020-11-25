@@ -1,5 +1,5 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { AuthUser } from '../model/auth-user.model';
+import { AuthUser } from '@app-auth/model/auth-user.model';
 import * as fromAuthActions from './auth.actions';
 
 export const featureKey = 'auth';

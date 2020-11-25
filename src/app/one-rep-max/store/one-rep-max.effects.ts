@@ -6,7 +6,7 @@ import * as fromOneRepMaxActions from './one-rep-max.actions';
 import * as fromAuth from '@app-auth/store/auth.reducer';
 import { exhaustMap, map, withLatestFrom } from 'rxjs/operators';
 import { environment } from '@app-env/environment';
-import { OneRepMax } from '../model/one-rep-max.model';
+import { OneRepMax } from '@app-one-rep-max/model/one-rep-max.model';
 
 @Injectable()
 export class OneRepMaxEffects {

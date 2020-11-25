@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { OneRepMax } from '../model/one-rep-max.model';
-import * as fromOneRepMax from '../store/one-rep-max.reducer';
-import * as fromOneRepMaxActions from '../store/one-rep-max.actions';
+import { OneRepMax } from '@app-one-rep-max/model/one-rep-max.model';
+import * as fromOneRepMax from '@app-one-rep-max/store/one-rep-max.reducer';
+import * as fromOneRepMaxActions from '@app-one-rep-max/store/one-rep-max.actions';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Exercise } from '../model/exercise.enum';
+import { Exercise } from '@app-one-rep-max/model/exercise.enum';
 
 @Injectable({
     providedIn: 'root'

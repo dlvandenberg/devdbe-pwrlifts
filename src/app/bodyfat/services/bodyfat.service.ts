@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import * as fromBodyfat from '../store/bodyfat.reducer';
-import * as fromBodyfatActions from '../store/bodyfat.actions';
+import * as fromBodyfat from '@app-bodyfat/store/bodyfat.reducer';
+import * as fromBodyfatActions from '@app-bodyfat/store/bodyfat.actions';
 
 @Injectable({
     providedIn: 'root'

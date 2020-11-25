@@ -9,7 +9,7 @@ import * as fromBodyfat from './store/bodyfat.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BodyfatEffects } from './store/bodyfat.effects';
 import { EditBodyfatComponent } from './edit-bodyfat/edit-bodyfat.component';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '@app-shared/shared.module';
 import { BodyfatChartComponent } from './bodyfat-chart/bodyfat-chart.component';
 
 @NgModule({

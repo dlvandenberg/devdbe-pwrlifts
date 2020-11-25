@@ -1,4 +1,4 @@
-import { TimeOfDay } from 'src/app/shared/model/time-of-day.enum';
+import { TimeOfDay } from '@app-types/time-of-day.enum';
 import { Exercise } from './exercise.enum';
 
 export interface OneRepMax {

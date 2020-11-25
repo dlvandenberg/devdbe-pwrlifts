@@ -1,5 +1,5 @@
 import { Action, createFeatureSelector, createReducer, on } from '@ngrx/store';
-import { Weight } from '../model/weight.model';
+import { Weight } from '@app-weight/model/weight.model';
 import * as fromWeightActions from './weight.actions';
 
 export const featureKey = 'weight';

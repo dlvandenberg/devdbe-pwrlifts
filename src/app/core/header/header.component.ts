@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@app-auth/services/auth.service';
 import { takeUntil } from 'rxjs/operators';
-import { DestroyObservable } from 'src/app/shared/destroy.observable';
+import { DestroyObservable } from '@app-shared/destroy.observable';
 
 @Component({
   selector: 'app-header',

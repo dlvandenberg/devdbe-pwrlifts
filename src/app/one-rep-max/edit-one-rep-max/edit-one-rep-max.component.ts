@@ -3,10 +3,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { dateValidator } from '@app-validators/date-validator.directive';
 import * as moment from 'moment';
-import { TimeOfDay } from 'src/app/shared/model/time-of-day.enum';
-import { Exercise } from '../model/exercise.enum';
-import { OneRepMax } from '../model/one-rep-max.model';
-import { OneRepMaxService } from '../services/one-rep-max.service';
+import { TimeOfDay } from '@app-types/time-of-day.enum';
+import { Exercise } from '@app-one-rep-max/model/exercise.enum';
+import { OneRepMax } from '@app-one-rep-max/model/one-rep-max.model';
+import { OneRepMaxService } from '@app-one-rep-max/services/one-rep-max.service';
 
 @Component({
   selector: 'app-edit-one-rep-max',

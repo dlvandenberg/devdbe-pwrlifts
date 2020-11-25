@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
-import { DestroyObservable } from '../shared/destroy.observable';
+import { DestroyObservable } from '@app-shared/destroy.observable';
 import { User } from './model/user.model';
 import { UserService } from './services/user.service';
 

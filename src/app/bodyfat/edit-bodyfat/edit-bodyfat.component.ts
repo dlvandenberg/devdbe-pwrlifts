@@ -5,7 +5,7 @@ import { Bodyfat } from '@app-bodyfat/model/bodyfat.model';
 import { BodyfatService } from '@app-bodyfat/services/bodyfat.service';
 import { dateValidator } from '@app-validators/date-validator.directive';
 import * as moment from 'moment';
-import { TimeOfDay } from '../../shared/model/time-of-day.enum';
+import { TimeOfDay } from '@app-types/time-of-day.enum';
 
 @Component({
   selector: 'app-edit-bodyfat',

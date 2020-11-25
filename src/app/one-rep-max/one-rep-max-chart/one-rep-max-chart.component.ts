@@ -6,8 +6,8 @@ import { ChartDataSets } from 'chart.js';
 import { merge, Subject } from 'rxjs';
 import { map, skip, takeUntil, tap } from 'rxjs/operators';
 import { DestroyObservable } from 'src/app/shared/destroy.observable';
-import { Exercise } from '../model/exercise.enum';
-import { OneRepMaxService } from '../services/one-rep-max.service';
+import { Exercise } from '@app-one-rep-max/model/exercise.enum';
+import { OneRepMaxService } from '@app-one-rep-max/services/one-rep-max.service';
 
 @Component({
   selector: 'app-one-rep-max-chart',

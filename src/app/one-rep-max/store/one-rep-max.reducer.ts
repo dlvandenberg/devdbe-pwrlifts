@@ -1,6 +1,5 @@
 import { Action, createFeatureSelector, createReducer, on } from '@ngrx/store';
-import { Exercise } from '../model/exercise.enum';
-import { OneRepMax } from '../model/one-rep-max.model';
+import { OneRepMax } from '@app-one-rep-max/model/one-rep-max.model';
 
 import * as fromOneRepMaxActions from './one-rep-max.actions';
 

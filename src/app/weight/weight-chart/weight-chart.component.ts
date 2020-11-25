@@ -4,7 +4,7 @@ import { BAR_CHART_Y_AXIS_ID, LINE_CHART_Y_AXIS_ID } from '@app-constants/charts
 import { WeightService } from '@app-weight/services/weight.service';
 import { ChartDataSets } from 'chart.js';
 import { skip, takeUntil } from 'rxjs/operators';
-import { DestroyObservable } from 'src/app/shared/destroy.observable';
+import { DestroyObservable } from '@app-shared/destroy.observable';
 
 @Component({
   selector: 'app-weight-chart',

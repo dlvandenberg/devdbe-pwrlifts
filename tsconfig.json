@@ -24,7 +24,9 @@
       "@app-user/*": [ "src/app/user/*" ],
       "@app-weight/*": [ "src/app/weight/*" ],
       "@app-bodyfat/*": [ "src/app/bodyfat/*" ],
-      "@app-constants/*": [ "src/app/shared/constants/*" ]
+      "@app-one-rep-max/*": [ "src/app/one-rep-max/*" ],
+      "@app-constants/*": [ "src/app/shared/constants/*" ],
+      "@app-shared/*": [ "src/app/shared/*" ],
     }
   }
 }

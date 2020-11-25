@@ -4,7 +4,7 @@ import { BodyfatService } from '@app-bodyfat/services/bodyfat.service';
 import { LINE_CHART_Y_AXIS_ID } from '@app-constants/charts';
 import { ChartDataSets } from 'chart.js';
 import { skip, takeUntil } from 'rxjs/operators';
-import { DestroyObservable } from 'src/app/shared/destroy.observable';
+import { DestroyObservable } from '@app-shared/destroy.observable';
 
 @Component({
   selector: 'app-bodyfat-chart',

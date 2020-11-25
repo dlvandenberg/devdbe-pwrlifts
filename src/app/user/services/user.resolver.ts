@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { exhaustMap, map, take } from 'rxjs/operators';
 import { AuthService } from '@app-auth/services/auth.service';
 import { UserService } from './user.service';
-import * as fromUserActions from '../store/user.actions';
+import * as fromUserActions from '@app-user/store/user.actions';
 
 @Injectable({
     providedIn: 'root'

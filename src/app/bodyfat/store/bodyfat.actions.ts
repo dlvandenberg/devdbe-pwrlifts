@@ -1,6 +1,6 @@
 import { Bodyfat } from '@app-bodyfat/model/bodyfat.model';
 import { createAction, props } from '@ngrx/store';
-import { TimeOfDay } from 'src/app/shared/model/time-of-day.enum';
+import { TimeOfDay } from '@app-types/time-of-day.enum';
 
 export const startEditing = createAction('[Bodyfat] Start Editing');
 
