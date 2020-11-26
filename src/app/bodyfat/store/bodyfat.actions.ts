@@ -16,7 +16,6 @@ export const cancelEditing = createAction('[Bodyfat] Cancel editing');
 export const createBodyfat = createAction(
     '[Bodyfat] Create',
     props<{
-        id: string,
         bodyfat: number,
         measuredOn: Date,
         partOfDayMeasured: TimeOfDay
@@ -26,7 +25,7 @@ export const createBodyfat = createAction(
 export const updateBodyfat = createAction(
     '[Bodyfat] Update',
     props<{
-        id: string,
+        id?: string,
         bodyfat: number,
         measuredOn: Date,
         partOfDayMeasured: TimeOfDay

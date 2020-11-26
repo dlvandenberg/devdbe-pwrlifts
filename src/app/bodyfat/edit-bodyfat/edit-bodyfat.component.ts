@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Bodyfat } from '@app-bodyfat/model/bodyfat.model';
 import { BodyfatService } from '@app-bodyfat/services/bodyfat.service';
@@ -41,12 +41,6 @@ export class EditBodyfatComponent implements OnInit {
     return this.editingbodyfat;
   }
 
-  @Output()
-  public cancel = new EventEmitter<null>();
-
-  @Output()
-  public save = new EventEmitter<Bodyfat>();
-
   constructor(
     private readonly formBuilder: FormBuilder,
     public readonly bodyfatService: BodyfatService,
@@ -57,9 +51,9 @@ export class EditBodyfatComponent implements OnInit {
     this.bodyfatForm = this.formBuilder.group({
       bodyfat: this.formBuilder.control(this.bodyfat.bodyfat, [Validators.required, Validators.min(0)]),
       measuredOn: this.formBuilder.control(this.datePipe.transform(this.bodyfat.measuredOn, 'yyyy-MM-dd'), [
-        Validators.required, dateValidator
+        Validators.required, dateValidator()
       ]),
-      partOfDayMeasured: this.formBuilder.control(this.bodyfat.partOfDayMeasured, Validators.required)
+      partOfDayMeasured: this.formBuilder.control(this.bodyfat.partOfDayMeasured)
     });
   }
 

@@ -1,6 +1,6 @@
 import { QuarterDecimalPipe } from './quarter-decimal.pipe';
 
-fdescribe('QuarterDecimalPipe', () => {
+describe('QuarterDecimalPipe', () => {
 
   it('create an instance', () => {
     const pipe = new QuarterDecimalPipe();

@@ -5,7 +5,7 @@ import * as moment from 'moment';
 export function dateValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors => {
     const date: moment.Moment = moment(control.value, 'YYYY-MM-DD');
-    return date.isValid ? null : { dateInvalid: true };
+    return date.isValid() ? null : { dateInvalid: true };
   };
 }
 

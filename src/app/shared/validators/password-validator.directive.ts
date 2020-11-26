@@ -1,6 +1,5 @@
-import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { Directive } from '@angular/core';
-import { AbstractControl, FormGroup, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
+import { FormGroup, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
 
 @Directive({
   selector: '[appPasswordValidator]',

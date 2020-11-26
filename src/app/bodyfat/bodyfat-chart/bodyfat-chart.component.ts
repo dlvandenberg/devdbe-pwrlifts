@@ -16,7 +16,6 @@ export class BodyfatChartComponent implements OnInit {
   public chartData: ChartDataSets[] = [];
   public chartLabels: string[] = [];
 
-
   constructor(
     private readonly bodyfatService: BodyfatService,
     private readonly datePipe: DatePipe,

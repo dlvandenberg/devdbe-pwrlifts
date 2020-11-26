@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { BAR_CHART_Y_AXIS_ID, LINE_CHART_Y_AXIS_ID } from '@app-constants/charts';
 import { WeightService } from '@app-weight/services/weight.service';
 import { ChartDataSets } from 'chart.js';
-import { skip, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, skip, takeUntil, tap } from 'rxjs/operators';
 import { DestroyObservable } from '@app-shared/destroy.observable';
 
 @Component({
@@ -22,7 +22,12 @@ export class WeightChartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.weightService.weights$.pipe(takeUntil(this.destroy$), skip(1)).subscribe(weightList => {
+    this.weightService.weights$.pipe(
+      takeUntil(this.destroy$),
+      skip(1),
+      distinctUntilChanged((a, b) => a !== b),
+      tap(() => console.log('new weights !'))
+    ).subscribe(weightList => {
       const chartData: ChartDataSets[] = [];
       const chartLabels: string[] = [];
       const weights: number[] = [];
