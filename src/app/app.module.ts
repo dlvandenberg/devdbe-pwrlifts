@@ -16,6 +16,7 @@ import { environment } from '@app-env/environment';
 import * as fromApp from './store/app.reducer';
 import { UserEffects } from '@app-user/store/user.effects';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AppUpdateService } from '@app-shared/services/app-update.service';
 
 
 @NgModule({
@@ -34,10 +35,16 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js',
+      {
+        enabled: environment.production,
+        registrationStrategy: 'registerImmediately'
+      }
+    )
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    AppUpdateService
   ],
   bootstrap: [AppComponent]
 })
