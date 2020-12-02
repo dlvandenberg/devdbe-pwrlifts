@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LINE_CHART_Y_AXIS_ID } from '@app-constants/charts';
 import { ChartDataSets } from 'chart.js';
 import { merge, Subject } from 'rxjs';
-import { map, skip, takeUntil, tap } from 'rxjs/operators';
+import { filter, map, skip, takeUntil, tap } from 'rxjs/operators';
 import { DestroyObservable } from 'src/app/shared/destroy.observable';
 import { Exercise } from '@app-one-rep-max/model/exercise.enum';
 import { OneRepMaxService } from '@app-one-rep-max/services/one-rep-max.service';
@@ -31,7 +31,8 @@ export class OneRepMaxChartComponent implements OnInit {
       .pipe(
         takeUntil(this.destroy$),
         tap(_ => this.newRouteParam$.next()),
-        map((params) => Exercise[params.exercise])
+        map((params) => Exercise[params.exercise]),
+        filter(exercise => exercise != null)
       )
       .subscribe((exercise) => {
         this.oneRepMaxService

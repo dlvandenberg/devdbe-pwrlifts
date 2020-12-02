@@ -177,7 +177,7 @@ describe('AuthService', () => {
       }, 20);
     });
 
-    fit('should clear logout timer', async () => {
+    it('should clear logout timer', async () => {
       // Given
       const spy = spyOn(storeMock, 'dispatch');
 

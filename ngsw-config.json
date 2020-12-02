@@ -26,5 +26,17 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "weights",
+      "urls": [ ],
+      "cacheConfig": {
+        "maxAge": "2h",
+        "maxSize": 20,
+        "timeout": "5s",
+        "strategy": "freshness"
+      }
+    }
   ]
 }

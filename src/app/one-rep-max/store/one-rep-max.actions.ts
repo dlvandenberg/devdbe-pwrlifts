@@ -20,7 +20,7 @@ export const createOneRepMax = createAction(
 export const updateOneRepMax = createAction(
     '[OneRepMax] Update',
     props<{
-        id: string,
+        id?: string,
         exercise: Exercise,
         weight: number,
         reps: number,
