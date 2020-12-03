@@ -93,7 +93,7 @@ const initialState = {
   },
 };
 
-fdescribe('OneRepMaxService', () => {
+describe('OneRepMaxService', () => {
   let service: OneRepMaxService;
   const storeMock: Partial<Store> = {
     dispatch(): void {},

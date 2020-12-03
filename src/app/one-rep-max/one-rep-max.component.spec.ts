@@ -1,22 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 
 import { OneRepMaxComponent } from './one-rep-max.component';
+import { OneRepMaxService } from './services/one-rep-max.service';
 
 describe('OneRepMaxComponent', () => {
   let component: OneRepMaxComponent;
-  let fixture: ComponentFixture<OneRepMaxComponent>;
+  const oneRepMaxServiceMock: Partial<OneRepMaxService> = {};
+  const routeMock: Partial<ActivatedRoute> = {};
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OneRepMaxComponent ]
+      providers: [
+        { provide: ActivatedRoute, useValue: routeMock },
+        { provide: OneRepMaxService, useValue: oneRepMaxServiceMock }
+      ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(OneRepMaxComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    const oneRepMaxService = TestBed.inject(OneRepMaxService);
+    const route = TestBed.inject(ActivatedRoute);
+    component = new OneRepMaxComponent(route, oneRepMaxService);
   });
 
   it('should create', () => {

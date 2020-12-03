@@ -46,7 +46,8 @@ describe('EditOneRepMaxComponent', () => {
     expect(component.oneRepMax.calculated).toBeFalse();
     expect(component.oneRepMax.date).toBeTruthy();
     expect(component.oneRepMax.time).toEqual(TimeOfDay.EVENING);
-    expect(component.oneRepMax.rpe).toEqual(0);
+    expect(component.oneRepMax.rpe).toBeUndefined();
+    expect(component.oneRepMax.oneRepMax).toBeUndefined();
   });
 
   it('should create a default oneRepMax object when a null value is set via input', () => {
@@ -59,6 +60,7 @@ describe('EditOneRepMaxComponent', () => {
     expect(component.oneRepMax.date).toBeTruthy();
     expect(component.oneRepMax.time).toEqual(TimeOfDay.EVENING);
     expect(component.oneRepMax.rpe).toEqual(0);
+    expect(component.oneRepMax.oneRepMax).toEqual(0);
   });
 
   it('should correctly initialize the form', () => {
