@@ -158,4 +158,10 @@ describe('EditComponent', () => {
       partOfDayMeasured: TimeOfDay.MORNING
     });
   });
+
+  it('should return timeOfDay value when partOfDayMeasured() is called', () => {
+    component.ngOnInit();
+
+    expect(component.partOfDayMeasured).toEqual(TimeOfDay.MORNING);
+  })
 });
