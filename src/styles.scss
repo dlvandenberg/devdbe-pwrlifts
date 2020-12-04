@@ -52,3 +52,7 @@ thead tr:hover > th {
         display:none;
     }
 }
+
+.card-body > .card-number {
+    color: $primary;
+}

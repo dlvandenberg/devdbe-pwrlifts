@@ -22,6 +22,7 @@
       "@app-validators/*": [ "src/app/shared/validators/*" ],
       "@app-auth/*": [ "src/app/auth/*" ],
       "@app-user/*": [ "src/app/user/*" ],
+      "@app-dashboard/*": [ "src/app/dashboard/*" ],
       "@app-weight/*": [ "src/app/weight/*" ],
       "@app-bodyfat/*": [ "src/app/bodyfat/*" ],
       "@app-one-rep-max/*": [ "src/app/one-rep-max/*" ],
