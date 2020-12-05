@@ -16,7 +16,6 @@ export const appReducer: ActionReducerMap<State> = {
 export function clearState(reducer: ActionReducer<State>): ActionReducer<State> {
     return (state: State, action: Action) => {
         if (action.type === fromAuthActions.logout.type) {
-            console.log('CLEARING STATE');
             state = {} as State;
         }
         return reducer(state, action);

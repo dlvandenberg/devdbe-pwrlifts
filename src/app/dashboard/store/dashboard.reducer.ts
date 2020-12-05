@@ -1,8 +1,16 @@
-import { Action, createFeatureSelector, createReducer, on } from '@ngrx/store';
+import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as fromDashboardActions from './dashboard.actions';
 
 export const featureKey = 'dashboard';
 export const selectState = createFeatureSelector<State>(featureKey);
+export const selectWilksData = createSelector(selectState, (state) => {
+    return {
+        weight: state.currentWeight,
+        squat: state.currentSquat,
+        benchpress: state.currentBenchpress,
+        deadlift: state.currentDeadlift
+    };
+});
 
 export interface State {
     currentWeight: number;
@@ -15,6 +23,8 @@ export interface State {
     loadingBenchpress: boolean;
     currentDeadlift: number;
     loadingDeadlift: boolean;
+    wilksScore: number;
+    loadingWilksScore: boolean;
 }
 
 const initialState: State = {
@@ -27,7 +37,9 @@ const initialState: State = {
     currentBenchpress: 0,
     loadingBenchpress: false,
     currentDeadlift: 0,
-    loadingDeadlift: false
+    loadingDeadlift: false,
+    wilksScore: 0,
+    loadingWilksScore: false
 };
 
 const dashboardReducer = createReducer(
@@ -46,6 +58,14 @@ const dashboardReducer = createReducer(
             const loadingProperty = 'loading' + dashboardType.name;
             return ({ ...state, [currentProperty]: current, [loadingProperty]: false });
         }
+    ),
+    on(
+        fromDashboardActions.calculateWilksScore,
+        (state) => ({ ...state, loadingWilksScore: true })
+    ),
+    on(
+        fromDashboardActions.storeWilksScore,
+        (state, { score }) => ({ ...state, loadingWilksScore: false, wilksScore: score })
     )
 );
 

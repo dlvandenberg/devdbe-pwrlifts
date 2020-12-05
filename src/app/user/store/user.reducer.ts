@@ -1,9 +1,10 @@
-import { Action, createFeatureSelector, createReducer, on } from '@ngrx/store';
+import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import { IUser, User } from '@app-user/model/user.model';
 import * as fromUserActions from './user.actions';
 
 export const featureKey = 'user';
 export const selectState = createFeatureSelector<State>(featureKey);
+export const selectUserGender = createSelector(selectState, (state => state.user ? state.user.gender : null));
 
 export interface State {
     user: IUser;

@@ -63,3 +63,9 @@ a.no-style {
     cursor: pointer;
     color: $secondary;
 }
+
+.card.dashboard {
+    .card-body .card-title {
+        color: $secondary;
+    }
+}

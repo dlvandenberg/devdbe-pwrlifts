@@ -13,3 +13,10 @@ export const storeCurrent = createAction(
         current: number
     }>()
 );
+
+export const calculateWilksScore = createAction('[Dasboard] Calculate Wilks Score');
+
+export const storeWilksScore = createAction(
+    '[Dashboard] Store Wilks Score',
+    props<{ score: number }>()
+);

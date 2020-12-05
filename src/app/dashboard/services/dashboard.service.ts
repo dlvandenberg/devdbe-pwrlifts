@@ -13,6 +13,20 @@ export class DashboardService {
 
   constructor(private readonly store: Store) { }
 
+  get wilks$(): Observable<number> {
+    return this.store.select(fromDashboard.selectState).pipe(
+      map(state => state.wilksScore),
+      distinctUntilChanged()
+    );
+  }
+
+  get calculatingWilks$(): Observable<boolean> {
+    return this.store.select(fromDashboard.selectState).pipe(
+      map(state => state.loadingWilksScore),
+      distinctUntilChanged()
+    );
+  }
+
   public current$(type: DashboardType): Observable<number> {
     return this.store.select(fromDashboard.selectState).pipe(
       map(state => {
@@ -34,6 +48,10 @@ export class DashboardService {
   }
 
   public fetchCurrent(type: DashboardType): void {
-    return this.store.dispatch(fromDashboardActions.fetchCurrent({ dashboardType: type }));
+    this.store.dispatch(fromDashboardActions.fetchCurrent({ dashboardType: type }));
+  }
+
+  public calculateWilks(): void {
+    this.store.dispatch(fromDashboardActions.calculateWilksScore());
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '@app-user/services/user.service';
 import { DashboardType } from './model/dashboard-type.enum';
 
 @Component({
@@ -8,7 +9,7 @@ import { DashboardType } from './model/dashboard-type.enum';
 export class DashboardComponent implements OnInit {
   public typeEnum = DashboardType;
 
-  constructor() { }
+  constructor(private readonly userService: UserService) { }
 
   ngOnInit(): void {
   }

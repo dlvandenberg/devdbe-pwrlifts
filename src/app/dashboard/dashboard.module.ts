@@ -10,9 +10,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { DashboardEffects } from './store/dashboard.effects';
 import { RouterModule } from '@angular/router';
 import { CurrentComponent } from './current/current.component';
+import { WilksComponent } from './wilks/wilks.component';
+import { UserModule } from '@app-user/user.module';
 
 @NgModule({
-  declarations: [DashboardComponent, CurrentComponent],
+  declarations: [DashboardComponent, CurrentComponent, WilksComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -23,6 +25,7 @@ import { CurrentComponent } from './current/current.component';
     EffectsModule.forFeature([ DashboardEffects ]),
     DashboardRoutingModule,
     SharedModule,
+    UserModule
   ],
 })
 export class DashboardModule {}
