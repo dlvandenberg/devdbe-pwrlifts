@@ -34,7 +34,7 @@ export class WeightChartComponent implements OnInit {
       const calories: number[] = [];
       weightList.forEach((weight) => {
         chartLabels.push(
-          this.datePipe.transform(weight.measuredOn, 'dd-MM-yyyy')
+          this.datePipe.transform(weight.date, 'dd-MM-yyyy')
         );
         weights.push(weight.weight);
         calories.push(weight.calories);

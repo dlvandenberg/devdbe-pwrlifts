@@ -1,15 +1,15 @@
+import { DashboardType } from '@app-dashboard/model/dashboard-type.enum';
 import { createAction, props } from '@ngrx/store';
 
-export const fetchCurrentWeight = createAction('[Dashboard] Fetch Current Weight');
-
-export const storeCurrentWeight = createAction(
-    '[Dashboard] Store Current Weight',
-    props<{ currentWeight: number }>()
+export const fetchCurrent = createAction(
+    '[Dashboard] Fetch Current',
+    props<{ dashboardType: DashboardType }>()
 );
 
-export const fetchCurrentBodyfat = createAction('[Dashboard] Fetch Current Bodyfat');
-
-export const storeCurrentBodyfat = createAction(
-    '[Dashboard] Store Current Bodyfat',
-    props<{ currentBodyfat: number }>()
+export const storeCurrent = createAction(
+    '[Dashboard] Store Current',
+    props<{
+        dashboardType: DashboardType,
+        current: number
+    }>()
 );

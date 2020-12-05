@@ -4,6 +4,6 @@ export interface Weight {
     id: string;
     weight: number;
     calories: number;
-    measuredOn: Date;
-    partOfDayMeasured: TimeOfDay;
+    date: Date;
+    time: TimeOfDay;
 }

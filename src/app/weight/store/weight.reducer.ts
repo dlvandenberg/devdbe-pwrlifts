@@ -29,15 +29,15 @@ const weightReducer = createReducer(
     ),
     on(
         fromWeightActions.startEditingExisting,
-        (state, { id, weight, calories, measuredOn, partOfDayMeasured }) => ({
+        (state, { id, weight, calories, date, time }) => ({
             ...state,
             editing: true,
             editingWeight: {
                 id,
                 weight,
                 calories,
-                measuredOn,
-                partOfDayMeasured
+                date,
+                time
             }
         })
     ),

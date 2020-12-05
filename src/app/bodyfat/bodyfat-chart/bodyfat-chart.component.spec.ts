@@ -40,10 +40,10 @@ describe('BodyfatChartComponent', () => {
   it('should skip first emitted bodyfatList and correctly update chartdata', async () => {
     const spy = spyOnProperty(bodyfatServiceMock, 'bodyfats$', 'get').and.returnValues(
       of<Bodyfat[]>(
-        [ { id: '0', bodyfat: 10, measuredOn: new Date('2019-01-01'), partOfDayMeasured: TimeOfDay.AFTERNOON } ],
+        [ { id: '0', bodyfat: 10, date: new Date('2019-01-01'), time: TimeOfDay.AFTERNOON } ],
         [
-          { id: '1', bodyfat: 15.5, measuredOn: new Date('2020-01-01'), partOfDayMeasured: TimeOfDay.MORNING },
-          { id: '2', bodyfat: 16.5, measuredOn: new Date('2020-02-01'), partOfDayMeasured: TimeOfDay.MORNING }
+          { id: '1', bodyfat: 15.5, date: new Date('2020-01-01'), time: TimeOfDay.MORNING },
+          { id: '2', bodyfat: 16.5, date: new Date('2020-02-01'), time: TimeOfDay.MORNING }
         ],
       )
     );

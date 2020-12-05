@@ -25,8 +25,8 @@ export class EditWeightComponent implements OnInit {
         id: null,
         weight: 0,
         calories: 0,
-        measuredOn: new Date(),
-        partOfDayMeasured: TimeOfDay.MORNING
+        date: new Date(),
+        time: TimeOfDay.MORNING
       };
     } else {
       this.editingWeight = newWeight;
@@ -53,10 +53,10 @@ export class EditWeightComponent implements OnInit {
     this.weightForm = this.formBuilder.group({
       weight: this.formBuilder.control(this.weight.weight, [Validators.required, Validators.min(0)]),
       calories: this.formBuilder.control(this.weight.calories, [Validators.required, Validators.min(0)]),
-      measuredOn: this.formBuilder.control(this.datePipe.transform(this.weight.measuredOn, 'yyyy-MM-dd'), [
+      date: this.formBuilder.control(this.datePipe.transform(this.weight.date, 'yyyy-MM-dd'), [
         Validators.required, dateValidator
       ]),
-      partOfDayMeasured: this.formBuilder.control(this.weight.partOfDayMeasured, Validators.required)
+      time: this.formBuilder.control(this.weight.time, Validators.required)
     });
   }
 
@@ -65,18 +65,18 @@ export class EditWeightComponent implements OnInit {
       this.weightService.update({
         id: this.weight.id,
         ...this.weightForm.value,
-        measuredOn: moment(this.weightForm.value.measuredOn, 'YYYY-MM-DD').toDate()
+        date: moment(this.weightForm.value.date, 'YYYY-MM-DD').toDate()
       });
     } else {
       this.weightService.create({
         ...this.weightForm.value,
-        measuredOn: moment(this.weightForm.value.measuredOn, 'YYYY-MM-DD').toDate()
+        date: moment(this.weightForm.value.date, 'YYYY-MM-DD').toDate()
       });
     }
   }
 
-  get partOfDayMeasured(): TimeOfDay {
-    return this.weightForm.controls.partOfDayMeasured.value;
+  get time(): TimeOfDay {
+    return this.weightForm.controls.time.value;
   }
 
   get weightInvalid(): boolean {
@@ -87,8 +87,8 @@ export class EditWeightComponent implements OnInit {
     return !this.weightForm.controls.calories.valid && this.weightForm.controls.calories.dirty;
   }
 
-  get measuredOnInvalid(): boolean {
-    return !this.weightForm.controls.measuredOn.valid && this.weightForm.controls.measuredOn.dirty;
+  get dateInvalid(): boolean {
+    return !this.weightForm.controls.date.valid && this.weightForm.controls.date.dirty;
   }
 
 

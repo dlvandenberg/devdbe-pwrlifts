@@ -19,8 +19,8 @@ export class EditBodyfatComponent implements OnInit {
   private editingbodyfat: Bodyfat = {
     id: null,
         bodyfat: 0,
-        measuredOn: new Date(),
-        partOfDayMeasured: TimeOfDay.MORNING
+        date: new Date(),
+        time: TimeOfDay.MORNING
   };
 
   @Input()
@@ -29,8 +29,8 @@ export class EditBodyfatComponent implements OnInit {
       this.editingbodyfat = {
         id: null,
         bodyfat: 0,
-        measuredOn: new Date(),
-        partOfDayMeasured: TimeOfDay.MORNING
+        date: new Date(),
+        time: TimeOfDay.MORNING
       };
     } else {
       this.editingbodyfat = newbodyfat;
@@ -50,10 +50,10 @@ export class EditBodyfatComponent implements OnInit {
   ngOnInit(): void {
     this.bodyfatForm = this.formBuilder.group({
       bodyfat: this.formBuilder.control(this.bodyfat.bodyfat, [Validators.required, Validators.min(0)]),
-      measuredOn: this.formBuilder.control(this.datePipe.transform(this.bodyfat.measuredOn, 'yyyy-MM-dd'), [
+      date: this.formBuilder.control(this.datePipe.transform(this.bodyfat.date, 'yyyy-MM-dd'), [
         Validators.required, dateValidator()
       ]),
-      partOfDayMeasured: this.formBuilder.control(this.bodyfat.partOfDayMeasured)
+      time: this.formBuilder.control(this.bodyfat.time)
     });
   }
 
@@ -62,25 +62,25 @@ export class EditBodyfatComponent implements OnInit {
       this.bodyfatService.update({
         id: this.bodyfat.id,
         ...this.bodyfatForm.value,
-        measuredOn: moment(this.bodyfatForm.value.measuredOn, 'YYYY-MM-DD').toDate()
+        date: moment(this.bodyfatForm.value.date, 'YYYY-MM-DD').toDate()
       });
     } else {
       this.bodyfatService.create({
         ...this.bodyfatForm.value,
-        measuredOn: moment(this.bodyfatForm.value.measuredOn, 'YYYY-MM-DD').toDate()
+        date: moment(this.bodyfatForm.value.date, 'YYYY-MM-DD').toDate()
       });
     }
   }
 
-  get partOfDayMeasured(): TimeOfDay {
-    return this.bodyfatForm.controls.partOfDayMeasured.value;
+  get time(): TimeOfDay {
+    return this.bodyfatForm.controls.time.value;
   }
 
   get bodyfatInvalid(): boolean {
     return !this.bodyfatForm.controls.bodyfat.valid && this.bodyfatForm.controls.bodyfat.dirty;
   }
 
-  get measuredOnInvalid(): boolean {
-    return !this.bodyfatForm.controls.measuredOn.valid && this.bodyfatForm.controls.measuredOn.dirty;
+  get dateInvalid(): boolean {
+    return !this.bodyfatForm.controls.date.valid && this.bodyfatForm.controls.date.dirty;
   }
 }

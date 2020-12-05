@@ -17,11 +17,11 @@ export class WeightEffects {
             ofType(fromWeightActions.createWeight),
             withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
             exhaustMap(([action, authUserId]) =>
-                this.http.post(environment.firebase.databaseUrl + 'weights/' + authUserId + '.json', {
+                this.http.post(environment.firebase.databaseUrl + 'weight/' + authUserId + '.json', {
                     weight: action.weight,
                     calories: action.calories,
-                    measuredOn: action.measuredOn.getTime(),
-                    partOfDayMeasured: action.partOfDayMeasured,
+                    date: action.date.getTime(),
+                    time: action.time,
                 }).pipe(
                     map(() => fromWeightActions.fetchWeights())
                 )
@@ -34,11 +34,11 @@ export class WeightEffects {
             ofType(fromWeightActions.updateWeight),
             withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
             exhaustMap(([action, authUserId]) =>
-                this.http.patch(environment.firebase.databaseUrl + 'weights/' + authUserId + '/' + action.id + '.json', {
+                this.http.patch(environment.firebase.databaseUrl + 'weight/' + authUserId + '/' + action.id + '.json', {
                     weight: action.weight,
                     calories: action.calories,
-                    measuredOn: action.measuredOn.getTime(),
-                    partOfDayMeasured: action.partOfDayMeasured,
+                    date: action.date.getTime(),
+                    time: action.time,
                 }).pipe(
                     map(() => fromWeightActions.fetchWeights())
                 )
@@ -51,7 +51,7 @@ export class WeightEffects {
             ofType(fromWeightActions.deleteWeight),
             withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
             exhaustMap(([ action, authUserId ]) =>
-                this.http.delete(environment.firebase.databaseUrl + 'weights/' + authUserId + '/' + action.id + '.json')
+                this.http.delete(environment.firebase.databaseUrl + 'weight/' + authUserId + '/' + action.id + '.json')
                 .pipe(
                     map(() => fromWeightActions.fetchWeights())
                 )
@@ -64,10 +64,10 @@ export class WeightEffects {
             ofType(fromWeightActions.fetchWeights),
             withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
             exhaustMap(([_, authUserId]) =>
-                this.http.get<Weight[]>(environment.firebase.databaseUrl + 'weights/' + authUserId + '.json',
+                this.http.get<Weight[]>(environment.firebase.databaseUrl + 'weight/' + authUserId + '.json',
                 {
                     params: new HttpParams()
-                        .set('orderBy', '"measuredOn"')
+                        .set('orderBy', '"date"')
                         .set('endAt', new Date().getTime().toString())
                 })
                 .pipe(
@@ -81,10 +81,10 @@ export class WeightEffects {
                             weightList.push({
                                 id: i,
                                 ...weight,
-                                measuredOn: new Date(weight.measuredOn)
+                                date: new Date(weight.date)
                             });
                         }
-                        const sortedList = weightList.sort((a, b) => b.measuredOn.getTime() - a.measuredOn.getTime());
+                        const sortedList = weightList.sort((a, b) => b.date.getTime() - a.date.getTime());
                         return fromWeightActions.storeWeights({ weights: sortedList });
                     })
                 )

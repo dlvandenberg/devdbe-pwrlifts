@@ -10,8 +10,8 @@ export const startEditingExisting = createAction(
         id: string,
         weight: number,
         calories: number,
-        measuredOn: Date,
-        partOfDayMeasured: TimeOfDay
+        date: Date,
+        time: TimeOfDay
     }>()
 );
 
@@ -23,8 +23,8 @@ export const createWeight = createAction(
         id: string,
         weight: number,
         calories: number,
-        measuredOn: Date,
-        partOfDayMeasured: TimeOfDay
+        date: Date,
+        time: TimeOfDay
     }>()
 );
 
@@ -34,8 +34,8 @@ export const updateWeight = createAction(
         id: string,
         weight: number,
         calories: number,
-        measuredOn: Date,
-        partOfDayMeasured: TimeOfDay
+        date: Date,
+        time: TimeOfDay
     }>()
 );
 

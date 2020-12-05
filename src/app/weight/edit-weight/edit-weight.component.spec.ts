@@ -7,9 +7,7 @@ import { EditWeightComponent } from './edit-weight.component';
 
 describe('EditComponent', () => {
   let component: EditWeightComponent;
-  const weightServiceMock: Partial<WeightService> = {
-
-  }
+  const weightServiceMock: Partial<WeightService> = {};
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

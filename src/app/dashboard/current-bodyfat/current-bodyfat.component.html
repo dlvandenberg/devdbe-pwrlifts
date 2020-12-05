@@ -1,7 +1,0 @@
-<div class="card text-white bg-dark-gray mb-3 text-center">
-    <div class="card-body">
-        <h4 class="card-title">BODYFAT</h4>
-        <h1 class="card-text card-number" *ngIf="!(dashboardService.loadingCurrentBodyfat$ | async)">{{ dashboardService.currentBodyfat$ | async }}</h1>
-        <app-loading-spinner *ngIf="dashboardService.loadingCurrentBodyfat$ | async"></app-loading-spinner>
-    </div>
-</div>

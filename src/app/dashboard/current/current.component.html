@@ -1,0 +1,10 @@
+<div class="card text-white bg-dark-gray mb-3 text-center">
+    <a class="no-style" [routerLink]="[ '/' + type.routeUrl ]">
+    <div class="card-body">
+        
+            <h4 class="card-title">{{ type.name | uppercase }}</h4>
+        <h1 class="card-text card-number" *ngIf="!(dashboardService.loading$(type) | async)">{{ (dashboardService.current$(type) | async) | number:'1.0-2' }}</h1>
+        <app-loading-spinner *ngIf="dashboardService.loading$(type) | async"></app-loading-spinner>
+    </div>
+</a>
+</div>

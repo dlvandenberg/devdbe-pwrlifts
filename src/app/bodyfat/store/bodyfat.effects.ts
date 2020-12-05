@@ -16,10 +16,10 @@ export class BodyfatEffects {
             ofType(fromBodyfatActions.createBodyfat),
             withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
             exhaustMap(([action, authUserId]) =>
-                this.http.post(environment.firebase.databaseUrl + 'bodyfats/' + authUserId + '.json', {
+                this.http.post(environment.firebase.databaseUrl + 'bodyfat/' + authUserId + '.json', {
                     bodyfat: action.bodyfat,
-                    measuredOn: action.measuredOn.getTime(),
-                    partOfDayMeasured: action.partOfDayMeasured
+                    date: action.date.getTime(),
+                    time: action.time
                 }).pipe(
                     map(() => fromBodyfatActions.fetchBodyfats())
                 )
@@ -32,10 +32,10 @@ export class BodyfatEffects {
             ofType(fromBodyfatActions.updateBodyfat),
             withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
             exhaustMap(([ action, authUserId ]) =>
-                this.http.patch(environment.firebase.databaseUrl + 'bodyfats/' + authUserId + '/' + action.id + '.json', {
+                this.http.patch(environment.firebase.databaseUrl + 'bodyfat/' + authUserId + '/' + action.id + '.json', {
                     bodyfat: action.bodyfat,
-                    measuredOn: action.measuredOn.getTime(),
-                    partOfDayMeasured: action.partOfDayMeasured
+                    date: action.date.getTime(),
+                    time: action.time
                 }).pipe(
                     map(() => fromBodyfatActions.fetchBodyfats())
                 )
@@ -48,7 +48,7 @@ export class BodyfatEffects {
             ofType(fromBodyfatActions.deleteBodyfat),
             withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
             exhaustMap(([ action, authUserId ]) =>
-                this.http.delete(environment.firebase.databaseUrl + 'bodyfats/' + authUserId + '/' + action.id + '.json')
+                this.http.delete(environment.firebase.databaseUrl + 'bodyfat/' + authUserId + '/' + action.id + '.json')
                 .pipe(
                     map(() => fromBodyfatActions.fetchBodyfats())
                 )
@@ -61,10 +61,10 @@ export class BodyfatEffects {
             ofType(fromBodyfatActions.fetchBodyfats),
             withLatestFrom(this.store.select(fromAuth.selectAuthUserId)),
             exhaustMap(([_, authUserId]) =>
-                this.http.get<Bodyfat[]>(environment.firebase.databaseUrl + 'bodyfats/' + authUserId + '.json',
+                this.http.get<Bodyfat[]>(environment.firebase.databaseUrl + 'bodyfat/' + authUserId + '.json',
                 {
                     params: new HttpParams()
-                        .set('orderBy', '"measuredOn"')
+                        .set('orderBy', '"date"')
                         .set('endAt', new Date().getTime().toString())
                 }).pipe(
                     map(bodyfats => {
@@ -77,10 +77,10 @@ export class BodyfatEffects {
                             bodyfatList.push({
                                 id: i,
                                 ...bodyfat,
-                                measuredOn: new Date(bodyfat.measuredOn)
+                                date: new Date(bodyfat.date)
                             });
                         }
-                        const sortedList = bodyfatList.sort((a, b) => b.measuredOn.getTime() - a.measuredOn.getTime());
+                        const sortedList = bodyfatList.sort((a, b) => b.date.getTime() - a.date.getTime());
                         return fromBodyfatActions.storeBodyfats({ bodyfats: sortedList });
                     })
                 )

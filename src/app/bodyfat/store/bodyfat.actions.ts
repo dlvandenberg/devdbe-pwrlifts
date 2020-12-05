@@ -17,8 +17,8 @@ export const createBodyfat = createAction(
     '[Bodyfat] Create',
     props<{
         bodyfat: number,
-        measuredOn: Date,
-        partOfDayMeasured: TimeOfDay
+        date: Date,
+        time: TimeOfDay
     }>()
 );
 
@@ -27,8 +27,8 @@ export const updateBodyfat = createAction(
     props<{
         id?: string,
         bodyfat: number,
-        measuredOn: Date,
-        partOfDayMeasured: TimeOfDay
+        date: Date,
+        time: TimeOfDay
     }>()
 );
 

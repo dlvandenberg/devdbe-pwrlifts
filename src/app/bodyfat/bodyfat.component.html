@@ -23,8 +23,8 @@
             <tbody>
                 <tr class="text-white bg-dark-gray" *ngFor="let measurement of bodyfatService.bodyfats$ | async">
                 <td>{{ measurement.bodyfat }}</td>
-                <td>{{ measurement.measuredOn | date:'dd-MM-yyyy' }}</td>
-                <td class="hideOnSmall">{{ measurement.partOfDayMeasured }}</td>
+                <td>{{ measurement.date | date:'dd-MM-yyyy' }}</td>
+                <td class="hideOnSmall">{{ measurement.time }}</td>
                 <td class="actions w-10">
                     <span class="oi oi-pencil pointer" (click)="bodyfatService.startEditingExisting(measurement)"></span>
                     <span class="oi oi-trash pointer danger" (click)="bodyfatService.delete(measurement.id)"></span>

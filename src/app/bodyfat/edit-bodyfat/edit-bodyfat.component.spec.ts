@@ -40,24 +40,24 @@ describe('EditComponent', () => {
   it('should create a default Bodyfat object when no value is set via input', () => {
     expect(component.bodyfat.id).toEqual(null);
     expect(component.bodyfat.bodyfat).toEqual(0);
-    expect(component.bodyfat.measuredOn).toBeTruthy();
-    expect(component.bodyfat.partOfDayMeasured).toEqual(TimeOfDay.MORNING);
+    expect(component.bodyfat.date).toBeTruthy();
+    expect(component.bodyfat.time).toEqual(TimeOfDay.MORNING);
   });
 
   it('should create a default Bodyfat object when a null value is set via input', () => {
     component.bodyfat = null;
     expect(component.bodyfat.id).toEqual(null);
     expect(component.bodyfat.bodyfat).toEqual(0);
-    expect(component.bodyfat.measuredOn).toBeTruthy();
-    expect(component.bodyfat.partOfDayMeasured).toEqual(TimeOfDay.MORNING);
+    expect(component.bodyfat.date).toBeTruthy();
+    expect(component.bodyfat.time).toEqual(TimeOfDay.MORNING);
   });
 
   it('should correctly initialize the form when an Bodyfat object is set via input', () => {
     component.bodyfat = {
       id: '0',
       bodyfat: 13.5,
-      measuredOn: new Date('2020-05-06'),
-      partOfDayMeasured: TimeOfDay.EVENING
+      date: new Date('2020-05-06'),
+      time: TimeOfDay.EVENING
     };
 
     component.ngOnInit();
@@ -65,8 +65,8 @@ describe('EditComponent', () => {
     const formValue = component.bodyfatForm.value;
     expect(formValue).toEqual({
       bodyfat: 13.5,
-      measuredOn: '2020-05-06',
-      partOfDayMeasured: TimeOfDay.EVENING
+      date: '2020-05-06',
+      time: TimeOfDay.EVENING
     });
   });
 
@@ -89,28 +89,28 @@ describe('EditComponent', () => {
       expect(component.bodyfatInvalid).toBeTrue();
     });
 
-    it('should invalidate form when measuredOn is empty', () => {
+    it('should invalidate form when date is empty', () => {
       component.ngOnInit();
-      component.bodyfatForm.controls.measuredOn.patchValue(null);
-      component.bodyfatForm.controls.measuredOn.markAsDirty();
+      component.bodyfatForm.controls.date.patchValue(null);
+      component.bodyfatForm.controls.date.markAsDirty();
 
       expect(component.bodyfatForm.invalid).toBeTrue();
-      expect(component.measuredOnInvalid).toBeTrue();
+      expect(component.dateInvalid).toBeTrue();
     });
 
-    it('should invalidate form when measuredOn is an invalid date', () => {
+    it('should invalidate form when date is an invalid date', () => {
       component.ngOnInit();
-      component.bodyfatForm.controls.measuredOn.patchValue('2020-30-30');
-      component.bodyfatForm.controls.measuredOn.markAsDirty();
+      component.bodyfatForm.controls.date.patchValue('2020-30-30');
+      component.bodyfatForm.controls.date.markAsDirty();
 
       expect(component.bodyfatForm.invalid).toBeTrue();
-      expect(component.measuredOnInvalid).toBeTrue();
+      expect(component.dateInvalid).toBeTrue();
     });
 
-    it('should not invalidate form when partOfDayMeasured is empty', () => {
+    it('should not invalidate form when time is empty', () => {
       component.ngOnInit();
-      component.bodyfatForm.controls.partOfDayMeasured.patchValue(null);
-      component.bodyfatForm.controls.partOfDayMeasured.markAsDirty();
+      component.bodyfatForm.controls.time.patchValue(null);
+      component.bodyfatForm.controls.time.markAsDirty();
 
       expect(component.bodyfatForm.invalid).toBeFalse();
     });
@@ -121,8 +121,8 @@ describe('EditComponent', () => {
     component.bodyfat = {
       id: '0',
       bodyfat: 13.5,
-      measuredOn: new Date('2020-05-06 00:00:00'),
-      partOfDayMeasured: TimeOfDay.EVENING
+      date: new Date('2020-05-06 00:00:00'),
+      time: TimeOfDay.EVENING
     };
     component.ngOnInit();
 
@@ -133,8 +133,8 @@ describe('EditComponent', () => {
     expect(spy).toHaveBeenCalledWith({
       id: '0',
       bodyfat: 14.8,
-      measuredOn: moment('2020-05-06', 'YYYY-MM-DD').toDate(),
-      partOfDayMeasured: TimeOfDay.EVENING
+      date: moment('2020-05-06', 'YYYY-MM-DD').toDate(),
+      time: TimeOfDay.EVENING
     });
   });
 
@@ -143,25 +143,25 @@ describe('EditComponent', () => {
     component.ngOnInit();
 
     component.bodyfatForm.controls.bodyfat.patchValue(20);
-    component.bodyfatForm.controls.measuredOn.patchValue(new Date('2020-01-01 00:00:00'));
-    component.bodyfatForm.controls.partOfDayMeasured.patchValue(TimeOfDay.MORNING);
+    component.bodyfatForm.controls.date.patchValue(new Date('2020-01-01 00:00:00'));
+    component.bodyfatForm.controls.time.patchValue(TimeOfDay.MORNING);
 
     component.saveBodyfat();
 
     const obj = { bodyfat: 20,
-      measuredOn: moment('2020-01-01', 'YYYY-MM-DD').toDate(),
-      partOfDayMeasured: TimeOfDay.MORNING };
+      date: moment('2020-01-01', 'YYYY-MM-DD').toDate(),
+      time: TimeOfDay.MORNING };
 
     expect(spy).toHaveBeenCalledWith({
       bodyfat: 20,
-      measuredOn: moment('2020-01-01', 'YYYY-MM-DD').toDate(),
-      partOfDayMeasured: TimeOfDay.MORNING
+      date: moment('2020-01-01', 'YYYY-MM-DD').toDate(),
+      time: TimeOfDay.MORNING
     });
   });
 
-  it('should return timeOfDay value when partOfDayMeasured() is called', () => {
+  it('should return timeOfDay value when time() is called', () => {
     component.ngOnInit();
 
-    expect(component.partOfDayMeasured).toEqual(TimeOfDay.MORNING);
+    expect(component.time).toEqual(TimeOfDay.MORNING);
   })
 });

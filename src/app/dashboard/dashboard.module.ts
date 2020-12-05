@@ -6,15 +6,16 @@ import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '@app-shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import * as fromDashboard from './store/dashboard.reducer';
-import { CurrentWeightComponent } from './current-weight/current-weight.component';
 import { EffectsModule } from '@ngrx/effects';
 import { DashboardEffects } from './store/dashboard.effects';
-import { CurrentBodyfatComponent } from './current-bodyfat/current-bodyfat.component';
+import { RouterModule } from '@angular/router';
+import { CurrentComponent } from './current/current.component';
 
 @NgModule({
-  declarations: [DashboardComponent, CurrentWeightComponent, CurrentBodyfatComponent],
+  declarations: [DashboardComponent, CurrentComponent],
   imports: [
     CommonModule,
+    RouterModule,
     StoreModule.forFeature(
       fromDashboard.featureKey,
       fromDashboard.dashboardReducerFn

@@ -1,10 +1,10 @@
 <div class="container">
-    <div class="row text-center">
+    <div class="row mb-3">
         <div class="col">
-            <app-current-weight></app-current-weight>
+            <app-current [type]="typeEnum.WEIGHT"></app-current>
         </div>
         <div class="col">
-            <app-current-bodyfat></app-current-bodyfat>
+            <app-current [type]="typeEnum.BODYFAT"></app-current>
         </div>
         <div class="col">
             <div class="card text-white bg-dark-gray mb-3 text-center">
@@ -13,6 +13,18 @@
                     <h1 class="card-text card-number">105</h1>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <app-current [type]="typeEnum.SQUAT_1RM"></app-current>
+        </div>
+        <div class="col">
+            <app-current [type]="typeEnum.BENCHPRESS_1RM"></app-current>
+        </div>
+        <div class="col">
+            <app-current [type]="typeEnum.DEADLIFT_1RM"></app-current>
         </div>
     </div>
 </div>

@@ -35,22 +35,22 @@ describe('BodyfatService', () => {
           {
             id: '0',
             bodyfat: 14.5,
-            measuredOn: new Date('2020-01-01 00:00:00'),
-            partOfDayMeasured: TimeOfDay.AFTERNOON,
+            date: new Date('2020-01-01 00:00:00'),
+            time: TimeOfDay.AFTERNOON,
           },
           {
             id: '1',
             bodyfat: 15.5,
-            measuredOn: new Date('2020-02-02 00:00:00'),
-            partOfDayMeasured: TimeOfDay.EVENING,
+            date: new Date('2020-02-02 00:00:00'),
+            time: TimeOfDay.EVENING,
           },
         ],
         editing: true,
         editingBodyfat: {
           id: '0',
           bodyfat: 14.5,
-          measuredOn: new Date('2020-01-01 00:00:00'),
-          partOfDayMeasured: TimeOfDay.AFTERNOON,
+          date: new Date('2020-01-01 00:00:00'),
+          time: TimeOfDay.AFTERNOON,
         },
       })
     );
@@ -61,14 +61,14 @@ describe('BodyfatService', () => {
       expect(bodyfatList[0]).toEqual({
         id: '0',
         bodyfat: 14.5,
-        measuredOn: new Date('2020-01-01 00:00:00'),
-        partOfDayMeasured: TimeOfDay.AFTERNOON,
+        date: new Date('2020-01-01 00:00:00'),
+        time: TimeOfDay.AFTERNOON,
       });
       expect(bodyfatList[1]).toEqual({
         id: '1',
         bodyfat: 15.5,
-        measuredOn: new Date('2020-02-02 00:00:00'),
-        partOfDayMeasured: TimeOfDay.EVENING,
+        date: new Date('2020-02-02 00:00:00'),
+        time: TimeOfDay.EVENING,
       });
     });
   });
@@ -81,22 +81,22 @@ describe('BodyfatService', () => {
           {
             id: '0',
             bodyfat: 14.5,
-            measuredOn: new Date('2020-01-01 00:00:00'),
-            partOfDayMeasured: TimeOfDay.AFTERNOON,
+            date: new Date('2020-01-01 00:00:00'),
+            time: TimeOfDay.AFTERNOON,
           },
           {
             id: '1',
             bodyfat: 15.5,
-            measuredOn: new Date('2020-02-02 00:00:00'),
-            partOfDayMeasured: TimeOfDay.EVENING,
+            date: new Date('2020-02-02 00:00:00'),
+            time: TimeOfDay.EVENING,
           },
         ],
         editing: true,
         editingBodyfat: {
           id: '0',
           bodyfat: 14.5,
-          measuredOn: new Date('2020-01-01 00:00:00'),
-          partOfDayMeasured: TimeOfDay.AFTERNOON,
+          date: new Date('2020-01-01 00:00:00'),
+          time: TimeOfDay.AFTERNOON,
         },
       })
     );
@@ -115,22 +115,22 @@ describe('BodyfatService', () => {
           {
             id: '0',
             bodyfat: 14.5,
-            measuredOn: new Date('2020-01-01 00:00:00'),
-            partOfDayMeasured: TimeOfDay.AFTERNOON,
+            date: new Date('2020-01-01 00:00:00'),
+            time: TimeOfDay.AFTERNOON,
           },
           {
             id: '1',
             bodyfat: 15.5,
-            measuredOn: new Date('2020-02-02 00:00:00'),
-            partOfDayMeasured: TimeOfDay.EVENING,
+            date: new Date('2020-02-02 00:00:00'),
+            time: TimeOfDay.EVENING,
           },
         ],
         editing: true,
         editingBodyfat: {
           id: '0',
           bodyfat: 14.5,
-          measuredOn: new Date('2020-01-01 00:00:00'),
-          partOfDayMeasured: TimeOfDay.AFTERNOON,
+          date: new Date('2020-01-01 00:00:00'),
+          time: TimeOfDay.AFTERNOON,
         },
       })
     );
@@ -140,8 +140,8 @@ describe('BodyfatService', () => {
       expect(editingBodyfat).toEqual({
         id: '0',
         bodyfat: 14.5,
-        measuredOn: new Date('2020-01-01 00:00:00'),
-        partOfDayMeasured: TimeOfDay.AFTERNOON,
+        date: new Date('2020-01-01 00:00:00'),
+        time: TimeOfDay.AFTERNOON,
       });
     });
   });
@@ -160,8 +160,8 @@ describe('BodyfatService', () => {
     service.startEditingExisting({
       id: '2',
       bodyfat: 17.4,
-      measuredOn: new Date('2020-10-11 00:00:00'),
-      partOfDayMeasured: TimeOfDay.AFTERNOON,
+      date: new Date('2020-10-11 00:00:00'),
+      time: TimeOfDay.AFTERNOON,
     });
 
     expect(dispatch).toHaveBeenCalledWith(
@@ -169,8 +169,8 @@ describe('BodyfatService', () => {
         bodyfat: {
           id: '2',
           bodyfat: 17.4,
-          measuredOn: new Date('2020-10-11 00:00:00'),
-          partOfDayMeasured: TimeOfDay.AFTERNOON,
+          date: new Date('2020-10-11 00:00:00'),
+          time: TimeOfDay.AFTERNOON,
         },
       })
     );
@@ -189,15 +189,15 @@ describe('BodyfatService', () => {
 
     service.create({
       bodyfat: 18.4,
-      measuredOn: new Date('2020-11-28 00:00:00'),
-      partOfDayMeasured: TimeOfDay.MORNING,
+      date: new Date('2020-11-28 00:00:00'),
+      time: TimeOfDay.MORNING,
     });
 
     expect(dispatch).toHaveBeenCalledWith(
       fromBodyfatActions.createBodyfat({
         bodyfat: 18.4,
-        measuredOn: new Date('2020-11-28 00:00:00'),
-        partOfDayMeasured: TimeOfDay.MORNING,
+        date: new Date('2020-11-28 00:00:00'),
+        time: TimeOfDay.MORNING,
       })
     );
   });
@@ -220,16 +220,16 @@ describe('BodyfatService', () => {
     service.update({
       id: '4',
       bodyfat: 14.4,
-      measuredOn: new Date('2020-11-18 00:00:00'),
-      partOfDayMeasured: TimeOfDay.EVENING,
+      date: new Date('2020-11-18 00:00:00'),
+      time: TimeOfDay.EVENING,
     });
 
     expect(dispatch).toHaveBeenCalledWith(
       fromBodyfatActions.updateBodyfat({
         id: '4',
         bodyfat: 14.4,
-        measuredOn: new Date('2020-11-18 00:00:00'),
-        partOfDayMeasured: TimeOfDay.EVENING,
+        date: new Date('2020-11-18 00:00:00'),
+        time: TimeOfDay.EVENING,
       })
     );
   });

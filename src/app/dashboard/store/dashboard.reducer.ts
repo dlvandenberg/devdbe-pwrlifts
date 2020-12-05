@@ -6,35 +6,46 @@ export const selectState = createFeatureSelector<State>(featureKey);
 
 export interface State {
     currentWeight: number;
-    loadingCurrentWeight: boolean;
+    loadingWeight: boolean;
     currentBodyfat: number;
-    loadingCurrentBodyfat: boolean;
+    loadingBodyfat: boolean;
+    currentSquat: number;
+    loadingSquat: boolean;
+    currentBenchpress: number;
+    loadingBenchpress: boolean;
+    currentDeadlift: number;
+    loadingDeadlift: boolean;
 }
 
 const initialState: State = {
     currentWeight: 0,
-    loadingCurrentWeight: false,
+    loadingWeight: false,
     currentBodyfat: 0,
-    loadingCurrentBodyfat: false,
+    loadingBodyfat: false,
+    currentSquat: 0,
+    loadingSquat: false,
+    currentBenchpress: 0,
+    loadingBenchpress: false,
+    currentDeadlift: 0,
+    loadingDeadlift: false
 };
 
 const dashboardReducer = createReducer(
     initialState,
     on(
-        fromDashboardActions.fetchCurrentWeight,
-        (state) => ({ ...state, loadingCurrentWeight: true })
+        fromDashboardActions.fetchCurrent,
+        (state, { dashboardType }) => {
+            const property = 'loading' + dashboardType.name;
+            return ({ ...state, [property]: true });
+        }
     ),
     on(
-        fromDashboardActions.storeCurrentWeight,
-        (state, { currentWeight }) => ({ ...state, currentWeight, loadingCurrentWeight: false })
-    ),
-    on(
-        fromDashboardActions.fetchCurrentBodyfat,
-        (state) => ({ ...state, loadingCurrentBodyfat: true })
-    ),
-    on(
-        fromDashboardActions.storeCurrentBodyfat,
-        (state, { currentBodyfat }) => ({ ...state, currentBodyfat, loadingCurrentBodyfat: false })
+        fromDashboardActions.storeCurrent,
+        (state, { dashboardType, current }) => {
+            const currentProperty = 'current' + dashboardType.name;
+            const loadingProperty = 'loading' + dashboardType.name;
+            return ({ ...state, [currentProperty]: current, [loadingProperty]: false });
+        }
     )
 );
 

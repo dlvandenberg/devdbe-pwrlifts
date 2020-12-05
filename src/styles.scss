@@ -55,4 +55,11 @@ thead tr:hover > th {
 
 .card-body > .card-number {
     color: $primary;
+    font-size: 6rem;
+}
+
+a.no-style {
+    text-decoration: none;
+    cursor: pointer;
+    color: $secondary;
 }

@@ -8,9 +8,7 @@ import { WeightChartComponent } from './weight-chart.component';
 
 describe('WeightChartComponent', () => {
   let component: WeightChartComponent;
-  const weightServiceMock: Partial<WeightService> = {
-
-  }
+  const weightServiceMock: Partial<WeightService> = { };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
