@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BodyMeasurement } from '@app-body-measurement/model/bodyfat.model';
+import { BodyMeasurement } from '@app-body-measurement/model/body-measurement.model';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

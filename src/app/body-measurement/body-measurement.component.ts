@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MeasurementType } from './model/measurement-type.model';
-import { BodyMeasurementService } from './services/bodyfat.service';
+import { BodyMeasurementService } from './services/body-measurement.service';
 
 @Component({
   selector: 'app-body-measurement',

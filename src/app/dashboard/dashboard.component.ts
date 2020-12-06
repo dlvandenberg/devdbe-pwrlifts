@@ -6,12 +6,6 @@ import { DashboardType } from './model/dashboard-type.enum';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   public typeEnum = DashboardType;
-
-  constructor(private readonly userService: UserService) { }
-
-  ngOnInit(): void {
-  }
-
 }

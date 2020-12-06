@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BodyMeasurement } from '@app-body-measurement/model/bodyfat.model';
-import { BodyMeasurementService } from '@app-body-measurement/services/bodyfat.service';
+import { BodyMeasurement } from '@app-body-measurement/model/body-measurement.model';
+import { BodyMeasurementService } from '@app-body-measurement/services/body-measurement.service';
 import { dateValidator } from '@app-validators/date-validator.directive';
 import * as moment from 'moment';
 import { TimeOfDay } from '@app-types/time-of-day.enum';

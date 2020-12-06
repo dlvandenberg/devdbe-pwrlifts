@@ -3,10 +3,10 @@ import { DashboardType } from '@app-dashboard/model/dashboard-type.enum';
 import { DashboardService } from '@app-dashboard/services/dashboard.service';
 import { Observable, of } from 'rxjs';
 
-import { CurrentComponent } from './wilks.component';
+import { WilksComponent } from './wilks.component';
 
 describe('CurrentComponent', () => {
-  let component: CurrentComponent;
+  let component: WilksComponent;
   const dashboardServiceMock: Partial<DashboardService> = {
     fetchCurrent(type: DashboardType): void {},
     current$(type: DashboardType): Observable<number> { return of(0); },
@@ -20,7 +20,7 @@ describe('CurrentComponent', () => {
     .compileComponents();
 
     const dashboardService = TestBed.inject(DashboardService);
-    component = new CurrentComponent(dashboardService);
+    component = new WilksComponent(dashboardService);
   });
 
   it('should create', () => {

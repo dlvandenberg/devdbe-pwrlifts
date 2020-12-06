@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Params } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BodyMeasurementService } from '@app-body-measurement/services/bodyfat.service';
+import { BodyMeasurementService } from '@app-body-measurement/services/body-measurement.service';
 import { LINE_CHART_Y_AXIS_ID } from '@app-constants/charts';
 import { Exercise } from '@app-one-rep-max/model/exercise.enum';
 import { OneRepMax } from '@app-one-rep-max/model/one-rep-max.model';

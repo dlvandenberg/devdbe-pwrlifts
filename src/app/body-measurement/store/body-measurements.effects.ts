@@ -6,7 +6,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { exhaustMap, map, withLatestFrom } from 'rxjs/operators';
 import { environment } from '@app-env/environment';
-import { BodyMeasurement } from '@app-body-measurement/model/bodyfat.model';
+import { BodyMeasurement } from '@app-body-measurement/model/body-measurement.model';
 
 @Injectable()
 export class BodyMeasurementEffects {

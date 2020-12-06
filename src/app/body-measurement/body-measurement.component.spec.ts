@@ -1,25 +1,27 @@
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 
 import { BodyMeasurementComponent } from './body-measurement.component';
-import { BodyMeasurementService } from './services/bodyfat.service';
+import { BodyMeasurementService } from './services/body-measurement.service';
 
-describe('BodyfatComponent', () => {
+describe('BodyMeasurementComponent', () => {
   let component: BodyMeasurementComponent;
   const bodyMeasurementServiceMock: Partial<BodyMeasurementService> = {
     fetchBodyMeasurements(): void {}
   };
-  const routeMock: Partial<ActivatedRoute> = {};
+  let route: ActivatedRoute;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       providers: [
-        { provide: BodyMeasurementService, useValue: bodyMeasurementServiceMock },
-        { provide: ActivatedRoute, useValue: routeMock }
+        { provide: BodyMeasurementService, useValue: bodyMeasurementServiceMock }
       ]
     });
     const bodyfatService = TestBed.inject(BodyMeasurementService);
-    const route = TestBed.inject(ActivatedRoute);
+    route = TestBed.inject(ActivatedRoute);
     component = new BodyMeasurementComponent(route, bodyfatService);
   });
 
@@ -27,7 +29,9 @@ describe('BodyfatComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should fetch bodyfats on initialization', () => {
+  it('should fetch body measurements on initialization', () => {
+    route.params = of({ type: 'weight' });
+    route.snapshot.params = { type: 'weight' };
     const fetch = spyOn(bodyMeasurementServiceMock, 'fetchBodyMeasurements');
 
     component.ngOnInit();

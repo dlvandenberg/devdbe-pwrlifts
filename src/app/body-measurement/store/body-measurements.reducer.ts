@@ -1,4 +1,4 @@
-import { BodyMeasurement } from '@app-body-measurement/model/bodyfat.model';
+import { BodyMeasurement } from '@app-body-measurement/model/body-measurement.model';
 import { Action, createFeatureSelector, createReducer, on } from '@ngrx/store';
 import * as fromBodyMeasurementActions from './body-measurement.actions';
 

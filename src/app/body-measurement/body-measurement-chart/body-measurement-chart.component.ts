@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { BodyMeasurementService } from '@app-body-measurement/services/bodyfat.service';
+import { BodyMeasurementService } from '@app-body-measurement/services/body-measurement.service';
 import {
   BAR_CHART_Y_AXIS_ID,
   LINE_CHART_Y_AXIS_ID,
@@ -40,7 +40,10 @@ export class BodyMeasurementChartComponent implements OnInit {
       .subscribe(measurementType => {
         this.bodyMeasurementService
           .measurements$(measurementType)
-          .pipe(takeUntil(merge(this.newRouteParam$, this.destroy$)), skip(1))
+          .pipe(
+            takeUntil(merge(this.newRouteParam$, this.destroy$)),
+            skip(1)
+          )
           .subscribe(measurementList => {
             const chartData: ChartDataSets[] = [];
             const chartLabels: string[] = [];

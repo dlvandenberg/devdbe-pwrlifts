@@ -1,4 +1,4 @@
-import { BodyMeasurement } from '@app-body-measurement/model/bodyfat.model';
+import { BodyMeasurement } from '@app-body-measurement/model/body-measurement.model';
 import { createAction, props } from '@ngrx/store';
 import { TimeOfDay } from '@app-types/time-of-day.enum';
 import { MeasurementType } from '@app-body-measurement/model/measurement-type.model';
