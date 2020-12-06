@@ -1,71 +1,83 @@
-@import "./bootstrap-override.scss";
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import './bootstrap-override.scss';
+@import '../node_modules/bootstrap/scss/bootstrap';
 
 a.nav-link,
 .dropdown-item {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .bg-dark-gray {
-    background-color: lighten($dark, 10)
+  background-color: lighten($dark, 10);
 }
 
 .bg-dark-gray > .dropdown-item {
-    color: $light !important;
+  color: $light !important;
 
-    &:hover {
-        background-color: $secondary;
-    }
+  &:hover {
+    background-color: $secondary;
+  }
 }
 
 tr.bg-dark-gray:hover {
-    background-color: $secondary !important;
+  background-color: $secondary !important;
 }
 
 thead tr:hover > th {
-    background-color: lighten($dark, 5) !important;
+  background-color: lighten($dark, 5) !important;
 }
 
 .oi:not(.danger):hover,
 .icon-hover:hover {
-    color: $primary;
+  color: $primary;
 }
 
 .oi.danger:hover {
-    color: $danger;
+  color: $danger;
 }
 
 .actions > span {
-    padding-right: 5px;
+  padding-right: 5px;
 }
 
 .actions > span:last-child {
-    padding: 0;
+  padding: 0;
 }
 
 @media (max-width: 576px) {
-    .hideOnSmall {
-        display:none;
-    }
+  .hideOnSmall {
+    display: none;
+  }
 }
 
 .card-body > .card-number {
-    color: $primary;
-    font-size: 6rem;
+  color: $primary;
+  font-size: 6rem;
 }
 
 a.no-style {
-    text-decoration: none;
-    cursor: pointer;
-    color: $secondary;
+  text-decoration: none;
+  cursor: pointer;
+  color: $secondary;
+
+  .card-body:hover {
+    background-color: lighten($dark, 15);
+  }
+}
+
+.dashboard-tile {
+  transition: .2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
 }
 
 .card.dashboard {
-    .card-body .card-title {
-        color: $secondary;
-    }
+  .card-body .card-title {
+    color: $secondary;
+  }
 }
