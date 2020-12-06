@@ -6,7 +6,6 @@ import { NotFoundComponent } from './core/not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'auth', canActivate: [ UnauthGuardService ], loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  { path: 'weight', loadChildren: () => import('./weight/weight.module').then(m => m.WeightModule) },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'body', loadChildren: () => import('./body-measurement/body-measurement.module').then(m => m.BodyMeasurementModule) },
