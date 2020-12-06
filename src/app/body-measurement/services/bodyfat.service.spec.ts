@@ -2,12 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { TimeOfDay } from '@app-types/time-of-day.enum';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { BodyfatService } from './bodyfat.service';
+import { BodyMeasurementService } from './bodyfat.service';
 
-import * as fromBodyfatActions from '@app-bodyfat/store/bodyfat.actions';
+import * as fromBodyMeasurementActions from '@app-body-measurement/store/body-measurement.actions';
 
-describe('BodyfatService', () => {
-  let service: BodyfatService;
+describe('BodyMeasurementService', () => {
+  let service: BodyMeasurementService;
   const storeMock: Partial<Store> = {
     dispatch(): void {},
     select(): Observable<any> {
@@ -20,7 +20,7 @@ describe('BodyfatService', () => {
       providers: [{ provide: Store, useValue: storeMock }],
     });
     const store = TestBed.inject(Store);
-    service = new BodyfatService(store);
+    service = new BodyMeasurementService(store);
   });
 
   it('should be created', () => {
@@ -56,7 +56,7 @@ describe('BodyfatService', () => {
     );
 
     // When
-    await service.bodyfats$.subscribe(bodyfatList => {
+    await service.measurements$.subscribe(bodyfatList => {
       expect(bodyfatList.length).toEqual(2);
       expect(bodyfatList[0]).toEqual({
         id: '0',
@@ -136,7 +136,7 @@ describe('BodyfatService', () => {
     );
 
     // When
-    await service.editingBodyfat$.subscribe(editingBodyfat => {
+    await service.editingMeasurement$.subscribe(editingBodyfat => {
       expect(editingBodyfat).toEqual({
         id: '0',
         bodyfat: 14.5,
@@ -151,7 +151,7 @@ describe('BodyfatService', () => {
 
     service.startEditing();
 
-    expect(dispatch).toHaveBeenCalledWith(fromBodyfatActions.startEditing());
+    expect(dispatch).toHaveBeenCalledWith(fromBodyMeasurementActions.startEditing());
   });
 
   it('should call startEditingExisting', () => {
@@ -159,16 +159,16 @@ describe('BodyfatService', () => {
 
     service.startEditingExisting({
       id: '2',
-      bodyfat: 17.4,
+      measurement: 17.4,
       date: new Date('2020-10-11 00:00:00'),
       time: TimeOfDay.AFTERNOON,
     });
 
     expect(dispatch).toHaveBeenCalledWith(
-      fromBodyfatActions.startEditingExisting({
+      fromBodyMeasurementActions.startEditingExisting({
         bodyfat: {
           id: '2',
-          bodyfat: 17.4,
+          measurement: 17.4,
           date: new Date('2020-10-11 00:00:00'),
           time: TimeOfDay.AFTERNOON,
         },
@@ -181,20 +181,20 @@ describe('BodyfatService', () => {
 
     service.cancelEditing();
 
-    expect(dispatch).toHaveBeenCalledWith(fromBodyfatActions.cancelEditing());
+    expect(dispatch).toHaveBeenCalledWith(fromBodyMeasurementActions.cancelEditing());
   });
 
   it('should call createBodyfat', () => {
     const dispatch = spyOn(storeMock, 'dispatch');
 
     service.create({
-      bodyfat: 18.4,
+      measurement: 18.4,
       date: new Date('2020-11-28 00:00:00'),
       time: TimeOfDay.MORNING,
     });
 
     expect(dispatch).toHaveBeenCalledWith(
-      fromBodyfatActions.createBodyfat({
+      fromBodyMeasurementActions.createBodyfat({
         bodyfat: 18.4,
         date: new Date('2020-11-28 00:00:00'),
         time: TimeOfDay.MORNING,
@@ -208,7 +208,7 @@ describe('BodyfatService', () => {
     service.delete('1');
 
     expect(dispatch).toHaveBeenCalledWith(
-      fromBodyfatActions.deleteBodyfat({
+      fromBodyMeasurementActions.deleteBodyfat({
         id: '1',
       })
     );
@@ -219,13 +219,13 @@ describe('BodyfatService', () => {
 
     service.update({
       id: '4',
-      bodyfat: 14.4,
+      measurement: 14.4,
       date: new Date('2020-11-18 00:00:00'),
       time: TimeOfDay.EVENING,
     });
 
     expect(dispatch).toHaveBeenCalledWith(
-      fromBodyfatActions.updateBodyfat({
+      fromBodyMeasurementActions.updateBodyfat({
         id: '4',
         bodyfat: 14.4,
         date: new Date('2020-11-18 00:00:00'),
@@ -237,8 +237,8 @@ describe('BodyfatService', () => {
   it('should call fetchBodyfats', () => {
     const dispatch = spyOn(storeMock, 'dispatch');
 
-    service.fetchBodyfats();
+    service.fetchBodyMeasurements();
 
-    expect(dispatch).toHaveBeenCalledWith(fromBodyfatActions.fetchBodyfats());
+    expect(dispatch).toHaveBeenCalledWith(fromBodyMeasurementActions.fetchBodyfats());
   });
 });
