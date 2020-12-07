@@ -63,7 +63,8 @@ describe('AuthInterceptor', () => {
         'test@mail.nl',
         '---',
         '///',
-        new Date(new Date().getTime() + 100000)
+        new Date(new Date().getTime() + 100000),
+        true
     )));
     const handlerSpy = spyOn(handler, 'handle').and.callThrough();
     const req = new HttpRequest('GET', 'url');

@@ -27,10 +27,10 @@ describe('LoginComponent', () => {
     const spy = spyOn(authServiceMock, 'login');
 
     const ngForm = new NgForm([], []);
-    ngForm.form = new FormGroup({ email: new FormControl('value'), password: new FormControl('test') });
+    ngForm.form = new FormGroup({ email: new FormControl('value'), password: new FormControl('test'), rememberMe: new FormControl(false) });
 
     component.onSubmit(ngForm);
 
-    expect(spy).toHaveBeenCalledWith('value', 'test');
+    expect(spy).toHaveBeenCalledWith('value', 'test', false);
   });
 });

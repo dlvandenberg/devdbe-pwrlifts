@@ -46,7 +46,8 @@ describe('HeaderComponent', () => {
         'test@mail.nl',
         '---',
         '///',
-        new Date()
+        new Date(),
+        false
       )));
 
       // When header component is initialized

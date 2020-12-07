@@ -32,7 +32,7 @@ describe('AuthService', () => {
     // Given
     spyOn(storeMock, 'select').and.returnValue(
       of({
-        authUser: new AuthUser('0', 'test@mail.nl', '---', '///', new Date()),
+        authUser: new AuthUser('0', 'test@mail.nl', '---', '///', new Date(), true),
         authError: 'someError',
         loading: false,
       })
@@ -50,7 +50,7 @@ describe('AuthService', () => {
     // Given
     spyOn(storeMock, 'select').and.returnValue(
       of({
-        authUser: new AuthUser('0', 'test@mail.nl', '---', '///', new Date()),
+        authUser: new AuthUser('0', 'test@mail.nl', '---', '///', new Date(), true),
         authError: 'someError',
         loading: false,
       })
@@ -66,7 +66,7 @@ describe('AuthService', () => {
     // Given
     spyOn(storeMock, 'select').and.returnValue(
       of({
-        authUser: new AuthUser('0', 'test@mail.nl', '---', '///', new Date()),
+        authUser: new AuthUser('0', 'test@mail.nl', '---', '///', new Date(), true),
         authError: 'someError',
         loading: true,
       })
@@ -110,13 +110,14 @@ describe('AuthService', () => {
     const spy = spyOn(storeMock, 'dispatch');
 
     // When
-    service.login('dennis@somemail.nl', 'apass');
+    service.login('dennis@somemail.nl', 'apass', true);
 
     // Then
     expect(spy).toHaveBeenCalledWith(
       fromAuthActions.loginStart({
         email: 'dennis@somemail.nl',
         password: 'apass',
+        rememberMe: true
       })
     );
   });
@@ -168,7 +169,7 @@ describe('AuthService', () => {
       const spy = spyOn(storeMock, 'dispatch');
 
       // When
-      service.setLogoutTimer(1000);
+      service.setTokenExpireTimer(1000, fromAuthActions.logout());
       jasmine.clock().tick(1000);
 
       // Then
@@ -182,7 +183,7 @@ describe('AuthService', () => {
       const spy = spyOn(storeMock, 'dispatch');
 
       // When
-      service.setLogoutTimer(1000);
+      service.setTokenExpireTimer(1000, fromAuthActions.logout());
       jasmine.clock().tick(500);
       service.clearLogoutTimer();
       jasmine.clock().tick(1000);

@@ -43,7 +43,7 @@ describe('UnauthGuardService', () => {
       'authUser$',
       'get'
     ).and.returnValue(
-      of(new AuthUser('0', 'test@mail.nl', '---', '///', new Date()))
+      of(new AuthUser('0', 'test@mail.nl', '---', '///', new Date(), true))
     );
     const routerSpy = spyOn(routerMock, 'createUrlTree').and.callThrough();
 
@@ -92,7 +92,7 @@ describe('UnauthGuardService', () => {
     ).and.returnValues(of(null));
     const autoLoginSpy = spyOn(unauthGuardServiceMock, 'autoLogin').and.callFake(
       () => {
-        spy.and.returnValue(of(new AuthUser('0', 'test@mail.nl', '---', '///', new Date())));
+        spy.and.returnValue(of(new AuthUser('0', 'test@mail.nl', '---', '///', new Date(), true)));
       }
     );
     const routerSpy = spyOn(routerMock, 'createUrlTree').and.callThrough();

@@ -12,6 +12,6 @@ export class LoginComponent {
 
   public onSubmit(form: NgForm): void {
     const values = form.value;
-    this.authService.login(values.email, values.password);
+    this.authService.login(values.email, values.password, values.rememberMe);
   }
 }

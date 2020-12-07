@@ -7,6 +7,7 @@ import * as fromAuthActions from '@app-auth/store/auth.actions';
 import * as fromAuth from '@app-auth/store/auth.reducer';
 import { map } from 'rxjs/operators';
 import { AuthUser } from '@app-auth/model/auth-user.model';
+import { TypedAction } from '@ngrx/store/src/models';
 
 export interface SignUpData {
   firstName: string;
@@ -49,8 +50,8 @@ export class AuthService {
     this.store.dispatch(fromAuthActions.signUpStart(data));
   }
 
-  public login(email: string, password: string): void {
-    this.store.dispatch(fromAuthActions.loginStart({ email, password }));
+  public login(email: string, password: string, rememberMe: boolean): void {
+    this.store.dispatch(fromAuthActions.loginStart({ email, password, rememberMe }));
   }
 
   public handleError(): void {
@@ -65,9 +66,9 @@ export class AuthService {
     this.store.dispatch(fromAuthActions.autoLogin());
   }
 
-  public setLogoutTimer(expirationDuration: number): void {
+  public setTokenExpireTimer(expirationDuration: number, action: TypedAction<string>): void {
     this.tokenExpirationTimer = setTimeout(() => {
-      this.logout();
+      this.store.dispatch(action);
     }, expirationDuration);
   }
 

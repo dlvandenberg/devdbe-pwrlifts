@@ -5,7 +5,8 @@ export const loginStart = createAction(
     '[Auth] Login Start',
     props<{
         email: string,
-        password: string
+        password: string,
+        rememberMe: boolean
     }>()
 );
 
@@ -31,7 +32,8 @@ export const authenticateSuccess = createAction(
         token: string,
         refreshToken: string,
         expirationDate: Date,
-        redirect: boolean
+        redirect: boolean,
+        rememberMe: boolean
     }>()
 );
 
@@ -45,3 +47,11 @@ export const authenticateFail = createAction(
 export const clearError = createAction('[Auth] Clear Error');
 
 export const autoLogin = createAction('[Auth] Auto Login');
+
+export const refreshToken = createAction(
+    '[Auth] Refresh Token',
+    props<{
+        email: string,
+        refreshToken: string
+    }>()
+);

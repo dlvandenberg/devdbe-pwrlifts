@@ -45,6 +45,19 @@
                     Please enter a valid password (min. 6 characters)
                 </div>
             </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" 
+                            class="form-check-input" id="rememberMe"
+                            ngModel
+                            required
+                            name="rememberMe"
+                        >
+                        <label for="rememberMe" class="form-check-label" i18n>Remember me</label>
+                    </div>
+                </div>
+            </div>
             <div>
                 <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid" i18n>Submit</button>
             </div>

@@ -43,7 +43,7 @@ describe('AuthGuardService', () => {
       'authUser$',
       'get'
     ).and.returnValue(
-      of(new AuthUser('0', 'test@mail.nl', '---', '///', new Date()))
+      of(new AuthUser('0', 'test@mail.nl', '---', '///', new Date(), true))
     );
 
     // When
@@ -66,7 +66,7 @@ describe('AuthGuardService', () => {
     const autoLoginSpy = spyOn(authServiceMock, 'autoLogin').and.callFake(
       () => {
         spy.and.returnValue(
-          of(new AuthUser('0', 'test@mail.nl', '---', '///', new Date()))
+          of(new AuthUser('0', 'test@mail.nl', '---', '///', new Date(), true))
         );
       }
     );

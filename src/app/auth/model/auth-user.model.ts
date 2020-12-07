@@ -5,6 +5,7 @@ export class AuthUser {
         private token: string,
         public refreshToken: string,
         private expirationDate: Date,
+        public rememberMe: boolean
     ) {
 
     }
