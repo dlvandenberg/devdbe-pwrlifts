@@ -122,7 +122,7 @@ export class AuthEffects {
                         const actionToPerform = action.rememberMe ?
                         fromAuthActions.refreshToken({ email: responseData.refreshToken, refreshToken: responseData.refreshToken })
                         : fromAuthActions.logout();
-                        return this.authService.setTokenExpireTimer(+responseData.expiresIn * 15000, actionToPerform);
+                        return this.authService.setTokenExpireTimer(+responseData.expiresIn * 1000, actionToPerform);
                     }),
                     map(response => handleAuthentication(
                         response.localId,

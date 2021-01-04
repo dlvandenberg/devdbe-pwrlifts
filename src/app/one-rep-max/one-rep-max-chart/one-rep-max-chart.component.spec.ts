@@ -1,8 +1,7 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BodyMeasurementService } from '@app-body-measurement/services/body-measurement.service';
 import { LINE_CHART_Y_AXIS_ID } from '@app-constants/charts';
 import { Exercise } from '@app-one-rep-max/model/exercise.enum';
 import { OneRepMax } from '@app-one-rep-max/model/one-rep-max.model';
@@ -28,6 +27,7 @@ describe('OneRepMaxChartComponent', () => {
       imports: [RouterTestingModule.withRoutes([])],
       providers: [
         DatePipe,
+        DecimalPipe,
         DestroyObservable,
         { provide: OneRepMaxService, useValue: oneRepMaxServiceMock },
       ],
@@ -37,10 +37,12 @@ describe('OneRepMaxChartComponent', () => {
     destroyObs = TestBed.inject(DestroyObservable);
     const bodyfatService = TestBed.inject(OneRepMaxService);
     const datePipe = TestBed.inject(DatePipe);
+    const decimalPipe = TestBed.inject(DecimalPipe);
     component = new OneRepMaxChartComponent(
       route,
       bodyfatService,
       datePipe,
+      decimalPipe,
       destroyObs
     );
   });

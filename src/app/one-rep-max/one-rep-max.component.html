@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 <tr class="text-white bg-dark-gray" *ngFor="let oneRepMax of (oneRepMaxService.oneRepMaxes$(exercise) | async)">
-                    <td>{{ oneRepMax.oneRepMax | quarterDecimal }}</td>
+                    <td>{{ oneRepMax.oneRepMax | number:'1.0-2' }}</td>
                     <td class="hideOnSmall">{{ oneRepMax.weight }}</td>
                     <td class="hideOnSmall">{{ oneRepMax.reps }}</td>
                     <td class="hideOnSmall">{{ oneRepMax.calculated ? 'Yes' : 'No' }}</td>
