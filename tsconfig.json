@@ -1,0 +1,32 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@app-env/*": [ "src/environments/*" ],
+      "@app-types/*": [ "src/app/shared/types/*" ],
+      "@app-validators/*": [ "src/app/shared/validators/*" ],
+      "@app-auth/*": [ "src/app/auth/*" ],
+      "@app-user/*": [ "src/app/user/*" ],
+      "@app-dashboard/*": [ "src/app/dashboard/*" ],
+      "@app-body-measurement/*": [ "src/app/body-measurement/*" ],
+      "@app-one-rep-max/*": [ "src/app/one-rep-max/*" ],
+      "@app-constants/*": [ "src/app/shared/constants/*" ],
+      "@app-shared/*": [ "src/app/shared/*" ],
+    }
+  }
+}

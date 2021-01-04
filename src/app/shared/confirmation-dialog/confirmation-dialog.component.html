@@ -1,0 +1,20 @@
+<div class="backdrop"></div>
+<div class="modal fade show" tabindex="1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark-gray">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ title }}</h5>
+                <button type="button" class="icon-hover close" (click)="cancel.emit()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ng-content></ng-content>
+            </div>
+            <div class="modal-footer">
+                <button type="button" [disabled]="confirmDisabled" class="btn btn-primary" (click)="confirm.emit()">{{ confirmButtonText }}</button>
+                <button type="button" class="btn btn-secondary" (click)="cancel.emit()" i18n>Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

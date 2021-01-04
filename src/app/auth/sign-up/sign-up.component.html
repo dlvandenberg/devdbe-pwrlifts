@@ -1,0 +1,150 @@
+<div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+        <div *ngIf="authService.loading$ | async" style="text-align: center;"><app-loading-spinner></app-loading-spinner></div>
+        <app-error
+            *ngIf="authService.error$ | async"
+            [message]="authService.error$ | async"
+            (dismiss)="authService.handleError()"
+        ></app-error>
+        <form appPasswordValidator #authForm="ngForm" (keyup.enter)="onSubmit(authForm.form)" (ngSubmit)="onSubmit(authForm.form)" *ngIf="!(authService.loading$ | async)">
+            <small class="form-text text-muted" i18n>Fields with * are required</small>
+            <br/>
+            <div class="form-group">
+                <label for="firstName" i18n>First name *</label>
+                <input type="text" 
+                    class="form-control"
+                    id="firstName"
+                    placeholder="Enter first name"
+                    ngModel
+                    name="firstName"
+                    required
+                    #firstNameControl="ngModel"
+                    [class.is-invalid]="firstNameControl.dirty && !firstNameControl.valid"
+                >
+                <div class="invalid-feedback" *ngIf="firstNameControl.dirty && !firstNameControl.valid">
+                    Please enter a first name
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName" i18n>Last name</label>
+                <input type="text" 
+                    class="form-control"
+                    id="lastName"
+                    placeholder="Enter last name"
+                    ngModel
+                    name="lastName"
+                >
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <span i18n>Gender *</span>
+                </div>
+                <div class="form-group col-md-9">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" 
+                            class="form-check-input" id="genderOption1"
+                            ngModel
+                            required
+                            name="gender"
+                            value="MALE">
+                        <label for="genderOption1" class="form-check-label" i18n>Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" 
+                            class="form-check-input"
+                            id="genderOption2"
+                            ngModel
+                            required
+                            name="gender"
+                            value="FEMALE">
+                        <label for="genderOption2" class="form-check-label" i18n>Female</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="dateOfBirth" i18n>Date of Birth *</label>
+                <input type="date" 
+                    class="form-control"
+                    id="dateOfBirth"
+                    placeholder="Enter date of birth (dd-mm-yyyy)"
+                    ngModel
+                    name="dateOfBirth"
+                    required
+                    pattern="\d{4}-\d{2}-\d{2}"
+                    #dateOfBirthControl="ngModel"
+                    appDateValidator
+                    [class.is-invalid]="dateOfBirthControl.dirty && !dateOfBirthControl.valid"
+                >
+                <div class="invalid-feedback" *ngIf="dateOfBirthControl.dirty && !dateOfBirthControl.valid">
+                    Please enter a valid date
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" i18n>Email address *</label>
+                <input type="email" 
+                    class="form-control"
+                    id="email"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter email"
+                    ngModel
+                    name="email"
+                    autocomplete="on"
+                    required
+                    email
+                    #emailControl="ngModel"
+                    [class.is-invalid]="emailControl.dirty && !emailControl.valid"
+                >
+                <div class="invalid-feedback" *ngIf="emailControl.dirty && !emailControl.valid">
+                    Please enter a valid email address
+                </div>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="password" i18n>Password *</label>
+                <input type="password" 
+                    class="form-control"
+                    id="password"
+                    placeholder="Enter password"
+                    autocomplete="on"
+                    ngModel
+                    name="password"
+                    required
+                    minlength="6"
+                    #passwordControl="ngModel"
+                    [class.is-invalid]="(authForm.hasError('unmatchingPasswords') && passwordControl.dirty && repeatedPasswordControl.dirty) || passwordControl.dirty && !passwordControl.valid"
+                >
+                <div class="invalid-feedback" *ngIf="passwordControl.dirty && !passwordControl.valid" i18n>
+                    Please enter a valid password (min. 6 characters)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="repeatedPassword" i18n>Repeat Password *</label>
+                <input type="password" 
+                    class="form-control"
+                    id="repeatedPassword"
+                    placeholder="Repeat password"
+                    autocomplete="on"
+                    ngModel
+                    name="repeatedPassword"
+                    required
+                    minlength="6"
+                    #repeatedPasswordControl="ngModel"
+                    [class.is-invalid]="(authForm.hasError('unmatchingPasswords') && passwordControl.dirty && repeatedPasswordControl.dirty) || repeatedPasswordControl.dirty && !repeatedPasswordControl.valid"
+                >
+                <div class="invalid-feedback" *ngIf="repeatedPasswordControl.dirty && !repeatedPasswordControl.valid" i18n>
+                    Please enter a valid password (min. 6 characters)
+                </div>
+            </div>
+            <div class="alert alert-danger" *ngIf="(authForm.hasError('unmatchingPasswords') && passwordControl.dirty && repeatedPasswordControl.dirty)" i18n>
+                Passwords do not match
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid" i18n>Submit</button>
+            </div>
+            <br/>
+            <div>
+                <span i18n>Already have an account? </span> <a class="text-primary" [routerLink]="['../login']" i18n>Login</a>
+            </div>
+        </form>
+    </div>
+</div>

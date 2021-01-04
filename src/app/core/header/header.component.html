@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" routerLink="/" style="line-height: 38px;">
+        <img src="/assets/pwrlifts.svg" width="38" height="38" class="d-inline-block align-top" alt="">
+        PWRLifts
+    </a>
+    <button class="navbar-toggler" type="button" aria-label="Toggle navigation"
+        (click)="collapsed = !collapsed"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse justify-content-between" [class.collapse]="collapsed">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" *ngIf="isAuthenticated" routerLinkActive="active" routerLink="dashboard" i18n>Dashboard</a>
+            <div class="dropdown" *ngIf="isAuthenticated">
+                <a class="nav-item nav-link dropdown-toggle" appDropdown #bodyDropdown="appDropdown" role="button">Body</a>
+                <div class="dropdown-menu bg-dark-gray" [class.show]="bodyDropdown.isOpen">
+                    <a class="dropdown-item" routerLink="body/weight" i18n>Weight</a>
+                    <a class="dropdown-item" routerLink="body/bodyfat" i18n>Bodyfat</a>
+                </div>
+            </div>
+            <div class="dropdown" *ngIf="isAuthenticated">
+                <a class="nav-item nav-link dropdown-toggle" appDropdown #rmDropdown="appDropdown" role="button">1RM</a>
+                <div class="dropdown-menu bg-dark-gray" [class.show]="rmDropdown.isOpen">
+                    <a class="dropdown-item" i18n routerLink="1rm/squat">Squat</a>
+                    <a class="dropdown-item" i18n routerLink="1rm/benchpress">Bench Press</a>
+                    <a class="dropdown-item" i18n routerLink="1rm/deadlift">Deadlift</a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-nav navbar-right">
+            <a class="nav-item nav-link"
+                *ngIf="!isAuthenticated"
+                aria-label="Account Login"
+                routerLinkActive="active"
+                routerLink="auth" i18n>Login</a>
+            <a class="nav-item nav-link"
+                aria-label="Profile"
+                routerLink="user"
+                routerLinkActive="active"
+                *ngIf="isAuthenticated">
+                <span class="oi oi-person"></span>
+            </a>
+            <a class="nav-item nav-link" 
+                *ngIf="isAuthenticated"
+                aria-label="Account Logout"
+                (click)="onLogout()">
+                <span class="oi oi-account-logout"></span>
+            </a>
+        </div>
+    </div>
+</nav>

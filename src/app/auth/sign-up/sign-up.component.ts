@@ -1,0 +1,25 @@
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AuthService } from '@app-auth/services/auth.service';
+
+@Component({
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html'
+})
+export class SignUpComponent {
+
+  constructor(public authService: AuthService) { }
+
+  public onSubmit(form: NgForm): void {
+    const values = form.value;
+
+    this.authService.signUp({
+      firstName: values.firstName,
+      lastName: values.lastName,
+      gender: values.gender,
+      dateOfBirth: values.dateOfBirth,
+      email: values.email,
+      password: values.password
+    });
+  }
+}

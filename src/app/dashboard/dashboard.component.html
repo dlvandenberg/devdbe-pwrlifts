@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row mb-3">
+        <div class="col">
+            <app-current [type]="typeEnum.WEIGHT"></app-current>
+        </div>
+        <div class="col">
+            <app-current [type]="typeEnum.BODYFAT"></app-current>
+        </div>
+        <div class="col">
+            <app-wilks></app-wilks>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <app-current [type]="typeEnum.SQUAT_1RM"></app-current>
+        </div>
+        <div class="col">
+            <app-current [type]="typeEnum.BENCHPRESS_1RM"></app-current>
+        </div>
+        <div class="col">
+            <app-current [type]="typeEnum.DEADLIFT_1RM"></app-current>
+        </div>
+    </div>
+</div>
